@@ -6,7 +6,7 @@ export default class Card {
 
   private rank: Rank;
 
-  constructor(suit: Suit, rank: Rank) {
+  constructor(rank: Rank, suit: Suit) {
     this.suit = suit;
     this.rank = rank;
   }

@@ -16,7 +16,7 @@ export default class Deck {
 
     for (const suit of SUITS) {
       for (const rank of RANKS) {
-        singleDeck.push(new Card(suit, rank));
+        singleDeck.push(new Card(rank, suit));
       }
     }
 
