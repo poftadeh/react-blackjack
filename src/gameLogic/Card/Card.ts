@@ -11,11 +11,27 @@ export default class Card {
     this.rank = rank;
   }
 
-  getSuit() {
+  /**
+   * Returns the suit of the card.
+   * @returns {Suit}
+   */
+  public getSuit(): Suit {
     return this.suit;
   }
 
-  getRank() {
+  /**
+   * Returns the rank of the card.
+   * @returns {Rank}
+   */
+  public getRank(): Rank {
     return this.rank;
+  }
+
+  /**
+   * Returns the name of the card indicating the rank and suit.
+   * @returns {string}
+   */
+  public getName(): string {
+    return `${this.rank} of ${this.suit}`;
   }
 }
