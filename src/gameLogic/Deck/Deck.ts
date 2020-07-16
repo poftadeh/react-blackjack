@@ -25,6 +25,8 @@ export default class Deck {
     }
   }
 
+  // TODO: implement public shuffle()
+
   /**
    * Returns the card array from the deck.
    * @returns {Card[]}
