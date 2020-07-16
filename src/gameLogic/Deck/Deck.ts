@@ -1,5 +1,5 @@
 import Card from '../Card/Card';
-import { SUITS, RANKS } from '../../constants';
+import { SUITS, RANKS, NUMBER_OF_DECKS } from '../../constants';
 
 export default class Deck {
   private cards: Card[] = [];
@@ -9,13 +9,19 @@ export default class Deck {
   }
 
   /**
-   * Sets up the deck by generating the standard set of cards.
+   * Sets up the deck by generating the standard set of cards based on deck count.
    */
   private generateCards(): void {
+    const singleDeck: Card[] = [];
+
     for (const suit of SUITS) {
       for (const rank of RANKS) {
-        this.cards.push(new Card(suit, rank));
+        singleDeck.push(new Card(suit, rank));
       }
+    }
+
+    for (let i = 0; i < NUMBER_OF_DECKS; i++) {
+      this.cards = [...this.cards, ...singleDeck];
     }
   }
 

@@ -17,3 +17,4 @@ export const RANKS: Rank[] = [
   'King',
   'Ace',
 ];
+export const NUMBER_OF_DECKS = 8;
