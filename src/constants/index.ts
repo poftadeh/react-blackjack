@@ -1,5 +1,5 @@
-import { Suit } from "../types/Suit";
-import { Rank } from "../types/Rank";
+import { Suit } from '../types/Suit';
+import { Rank } from '../types/Rank';
 
 export const SUITS: Suit[] = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
 export const RANKS: Rank[] = [
