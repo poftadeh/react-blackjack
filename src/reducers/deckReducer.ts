@@ -12,7 +12,7 @@ const initialState: deckState = {
   deck: new Deck(),
 };
 
-export default (state = initialState, action: deckAction) => {
+export default (state = initialState, action: deckAction): deckState => {
   switch (action.type) {
     default:
       return state;

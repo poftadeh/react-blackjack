@@ -20,7 +20,7 @@ export default class Deck {
       }
     }
 
-    for (let i = 0; i < NUMBER_OF_DECKS; i++) {
+    for (let i = 0; i < NUMBER_OF_DECKS; i += 1) {
       this.cards = [...this.cards, ...singleDeck];
     }
   }

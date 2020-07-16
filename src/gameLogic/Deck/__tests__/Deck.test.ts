@@ -1,5 +1,6 @@
 import Deck from '../Deck';
 import { SUITS, RANKS, NUMBER_OF_DECKS } from '../../../constants';
+
 const STANDARD_DECK_SIZE = 52;
 
 describe('Deck', () => {
