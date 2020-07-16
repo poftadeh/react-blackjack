@@ -15,4 +15,8 @@ export default class Deck {
       }
     }
   }
+
+  getCards() {
+    return this.cards;
+  }
 }

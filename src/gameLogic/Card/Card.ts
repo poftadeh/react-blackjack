@@ -3,10 +3,19 @@ import { Rank } from '../../types/Rank';
 
 export default class Card {
   private suit: Suit;
+
   private rank: Rank;
 
   constructor(suit: Suit, rank: Rank) {
     this.suit = suit;
     this.rank = rank;
+  }
+
+  getSuit() {
+    return this.suit;
+  }
+
+  getRank() {
+    return this.rank;
   }
 }
