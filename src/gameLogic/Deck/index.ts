@@ -1,4 +1,4 @@
-import Card from '../Card/Card';
+import Card from '../Card';
 import { SUITS, RANKS, NUMBER_OF_DECKS } from '../../constants';
 
 export default class Deck {

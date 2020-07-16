@@ -1,4 +1,4 @@
-import Deck from '../gameLogic/Deck/Deck';
+import Deck from '../gameLogic/Deck';
 
 interface deckState {
   deck: Deck;

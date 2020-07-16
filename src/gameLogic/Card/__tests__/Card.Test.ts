@@ -1,4 +1,4 @@
-import Card from '../Card';
+import Card from '..';
 
 describe('Card', () => {
   it('should create a card properly', () => {
