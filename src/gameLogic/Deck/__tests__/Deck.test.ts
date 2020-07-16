@@ -14,4 +14,18 @@ describe('Deck', () => {
       expect(RANKS).toContain(card.getRank());
     });
   });
+
+  it('should shuffle the cards properly', () => {
+    const deck = new Deck();
+    const originalCards = [...deck.getCards()];
+
+    deck.shuffle();
+    const shuffledCards = deck.getCards();
+
+    expect(originalCards.length).toEqual(shuffledCards.length);
+
+    originalCards.forEach((card) => {
+      expect(shuffledCards.includes(card)).toBe(true);
+    });
+  });
 });

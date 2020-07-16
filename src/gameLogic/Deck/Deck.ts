@@ -25,7 +25,23 @@ export default class Deck {
     }
   }
 
-  // TODO: implement public shuffle()
+  /**
+   * Shuffles the deck.
+   * @returns {void}
+   */
+  public shuffle(): void {
+    const {
+      cards,
+      cards: { length },
+    } = this;
+
+    for (let i = 0; i < length; i += 1) {
+      const randomIndex = Math.floor(Math.random() * length);
+      const temp = cards[randomIndex];
+      cards[randomIndex] = cards[i];
+      cards[i] = temp;
+    }
+  }
 
   /**
    * Returns the card array from the deck.
