@@ -57,4 +57,11 @@ export default class Dealer {
   public getStatus(): PlayerStatus {
     return this.status;
   }
+
+  /**
+   * Discards current hand and replaces it with a new hand.
+   */
+  public drawNewHand(): void {
+    this.hand = new Hand();
+  }
 }

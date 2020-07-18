@@ -58,9 +58,21 @@ export default class Player extends Dealer {
     return this.betSize ?? 0;
   }
 
+  /**
+   * Performs a double down action for the player.
+   * @param card card to be added to hand.
+   */
   public doubleDown(card: Card): void {
     this.addCard(card);
     this.bet(this.betSize);
     this.status = PlayerStatus.Stand;
+  }
+
+  /**
+   * Resets hand and bet for a new round.
+   */
+  public reset(): void {
+    super.drawNewHand();
+    this.betSize = 0;
   }
 }
