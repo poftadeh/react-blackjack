@@ -75,4 +75,16 @@ describe('Player', () => {
       betAmount * 2 * STANDARD_WIN_MULTIPLIER,
     );
   });
+
+  it('should reset the hand and bet size', () => {
+    const player = new Player(555);
+    player.bet(10);
+    player.addCard(new Card('Ace', 'Clubs'));
+    player.addCard(new Card('King', 'Spades'));
+    player.addCard(new Card('King', 'Spades'));
+
+    player.reset();
+    expect(player.getHand().getCards().length).toBe(0);
+    expect(player.getBetSize()).toBe(0);
+  });
 });
