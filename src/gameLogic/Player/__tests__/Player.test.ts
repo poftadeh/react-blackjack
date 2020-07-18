@@ -1,5 +1,9 @@
 import Player from '..';
 import Card from '../../Card';
+import {
+  STANDARD_WIN_MULTIPLIER,
+  BLACKJACK_WIN_MULTIPLIER,
+} from '../../../constants';
 
 describe('Player', () => {
   it('should construct a new player with a 2000 chip stack', () => {
@@ -33,10 +37,26 @@ describe('Player', () => {
     expect(player.getBetSize()).toBe(1000);
   });
 
-  it('should apply a win multiplier', () => {
+  it('should apply a standard win multiplier', () => {
     const player = new Player(50);
-    player.bet(50);
-    player.applyWinMultiplier(2);
-    expect(player.getStack().getChips()).toBe(100);
+    const betAmount = 50;
+    player.bet(betAmount);
+    player.applyWinMultiplier();
+    expect(player.getStack().getChips()).toBe(
+      betAmount * STANDARD_WIN_MULTIPLIER,
+    );
+  });
+
+  it('should apply a blackjack win multiplier', () => {
+    const player = new Player(100);
+    player.addCard(new Card('Ace', 'Clubs'));
+    player.addCard(new Card('Jack', 'Spades'));
+
+    const betAmount = 100;
+    player.bet(100);
+    player.applyWinMultiplier();
+    expect(player.getStack().getChips()).toBe(
+      betAmount * BLACKJACK_WIN_MULTIPLIER,
+    );
   });
 });

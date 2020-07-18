@@ -1,47 +1,18 @@
-import Hand from '../Hand';
 import Stack from '../Stack';
-import { PlayerStatus } from '../../types/PlayerStatus';
-import Card from '../Card';
-import { WIN_MULTIPLIER, BLACKJACK_MULTIPLIER } from '../../constants';
+import {
+  STANDARD_WIN_MULTIPLIER,
+  BLACKJACK_WIN_MULTIPLIER,
+} from '../../constants';
+import Dealer from '../Dealer';
 
-export default class Player {
-  private hand: Hand;
-
+export default class Player extends Dealer {
   private stack: Stack;
 
   private betSize: number | null = 0;
 
-  private status: PlayerStatus;
-
   constructor(startingChips: number) {
+    super();
     this.stack = new Stack(startingChips);
-    this.hand = new Hand();
-    this.status = PlayerStatus.Active;
-  }
-
-  /**
-   * Adds a card to the player's hand.
-   * @param card
-   */
-  public addCard(card: Card): void {
-    this.hand.addCard(card);
-    if (this.hand.getIsBust()) {
-      this.status = PlayerStatus.Bust;
-    }
-  }
-
-  /**
-   * Puts the player in a 'stand' state.
-   */
-  public stand(): void {
-    this.status = PlayerStatus.Stand;
-  }
-
-  /**
-   * Returns the player's hand.
-   */
-  public getHand(): Hand {
-    return this.hand;
   }
 
   /**
@@ -52,22 +23,8 @@ export default class Player {
   }
 
   /**
-   * Returns a boolean indicating if the player's hand is busted.
-   */
-  public isBust(): boolean {
-    return this.hand.getIsBust();
-  }
-
-  /**
-   * Returns whether or not the player has BlackJack.
-   */
-  public isHoldingBlackjack(): boolean {
-    return this.hand.getIsBlackJack();
-  }
-
-  /**
    * Places a bet amount for the player.
-   * @param amount the amount of chips to wager.
+   * @param amount the number of chips to wager.
    */
   public bet(amount: number): void {
     const chipStackAmount = this.stack.getChips();
@@ -89,11 +46,9 @@ export default class Player {
       throw new Error('Bet size is null');
     }
 
-    const winAmount =
-      this.betSize +
-      (this.hand.getIsBlackJack()
-        ? this.betSize * WIN_MULTIPLIER
-        : this.betSize * BLACKJACK_MULTIPLIER);
+    const winAmount = this.hand.getIsBlackJack()
+      ? this.betSize * BLACKJACK_WIN_MULTIPLIER
+      : this.betSize * STANDARD_WIN_MULTIPLIER;
 
     this.stack.addChips(winAmount);
     this.betSize = null;

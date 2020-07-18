@@ -21,6 +21,6 @@ export const RANKS: Rank[] = [
 
 export const NUMBER_OF_DECKS = 8;
 
-export const WIN_MULTIPLIER = 1;
+export const STANDARD_WIN_MULTIPLIER = 2;
 
-export const BLACKJACK_MULTIPLIER = 1.5;
+export const BLACKJACK_WIN_MULTIPLIER = 2.5;
