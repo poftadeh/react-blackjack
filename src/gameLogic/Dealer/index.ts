@@ -50,4 +50,11 @@ export default class Dealer {
   public isHoldingBlackjack(): boolean {
     return this.hand.getIsBlackJack();
   }
+
+  /**
+   * Returns dealer's status
+   */
+  public getStatus(): PlayerStatus {
+    return this.status;
+  }
 }
