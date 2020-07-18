@@ -5,7 +5,7 @@ import Card from '../Card';
 export default class Dealer {
   protected hand: Hand;
 
-  private status: PlayerStatus;
+  protected status: PlayerStatus;
 
   constructor() {
     this.hand = new Hand();

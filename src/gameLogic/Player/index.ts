@@ -4,11 +4,13 @@ import {
   BLACKJACK_WIN_MULTIPLIER,
 } from '../../constants';
 import Dealer from '../Dealer';
+import { PlayerStatus } from '../../types/PlayerStatus';
+import Card from '../Card';
 
 export default class Player extends Dealer {
   private stack: Stack;
 
-  private betSize: number | null = 0;
+  private betSize = 0;
 
   constructor(startingChips: number) {
     super();
@@ -35,23 +37,18 @@ export default class Player extends Dealer {
     }
 
     this.stack.removeChips(amount);
-    this.betSize = amount;
+    this.betSize += amount;
   }
 
   /**
    * Applies the win multiplier to the player's wager amount and adds it to the chip stack.
    */
   public applyWinMultiplier(): void {
-    if (this.betSize === null) {
-      throw new Error('Bet size is null');
-    }
-
     const winAmount = this.hand.getIsBlackJack()
       ? this.betSize * BLACKJACK_WIN_MULTIPLIER
       : this.betSize * STANDARD_WIN_MULTIPLIER;
 
     this.stack.addChips(winAmount);
-    this.betSize = null;
   }
 
   /**
@@ -59,5 +56,11 @@ export default class Player extends Dealer {
    */
   public getBetSize(): number {
     return this.betSize ?? 0;
+  }
+
+  public doubleDown(card: Card): void {
+    this.addCard(card);
+    this.bet(this.betSize);
+    this.status = PlayerStatus.Stand;
   }
 }

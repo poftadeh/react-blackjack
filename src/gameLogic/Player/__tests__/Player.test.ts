@@ -49,14 +49,30 @@ describe('Player', () => {
 
   it('should apply a blackjack win multiplier', () => {
     const player = new Player(100);
+    const betAmount = 100;
+    player.bet(100);
+
     player.addCard(new Card('Ace', 'Clubs'));
     player.addCard(new Card('Jack', 'Spades'));
 
-    const betAmount = 100;
-    player.bet(100);
     player.applyWinMultiplier();
     expect(player.getStack().getChips()).toBe(
       betAmount * BLACKJACK_WIN_MULTIPLIER,
+    );
+  });
+
+  it('should double down correctly', () => {
+    const player = new Player(1000);
+    const betAmount = 500;
+    player.bet(betAmount);
+
+    player.addCard(new Card('Ace', 'Clubs'));
+    player.addCard(new Card('Ace', 'Spades'));
+    player.doubleDown(new Card('Queen', 'Hearts'));
+
+    player.applyWinMultiplier();
+    expect(player.getStack().getChips()).toBe(
+      betAmount * 2 * STANDARD_WIN_MULTIPLIER,
     );
   });
 });
