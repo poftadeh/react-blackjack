@@ -2,6 +2,7 @@ import { Suit } from '../types/Suit';
 import { Rank } from '../types/Rank';
 
 export const SUITS: Suit[] = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
+
 export const RANKS: Rank[] = [
   '2',
   '3',
@@ -17,4 +18,9 @@ export const RANKS: Rank[] = [
   'King',
   'Ace',
 ];
+
 export const NUMBER_OF_DECKS = 8;
+
+export const WIN_MULTIPLIER = 1;
+
+export const BLACKJACK_MULTIPLIER = 1.5;

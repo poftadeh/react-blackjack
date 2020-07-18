@@ -1,5 +1,8 @@
 import Hand from '../Hand';
 import Stack from '../Stack';
+import { PlayerStatus } from '../../types/PlayerStatus';
+import Card from '../Card';
+import { WIN_MULTIPLIER, BLACKJACK_MULTIPLIER } from '../../constants';
 
 export default class Player {
   private hand: Hand;
@@ -8,9 +11,30 @@ export default class Player {
 
   private betSize: number | null = 0;
 
+  private status: PlayerStatus;
+
   constructor(startingChips: number) {
     this.stack = new Stack(startingChips);
     this.hand = new Hand();
+    this.status = PlayerStatus.Active;
+  }
+
+  /**
+   * Adds a card to the player's hand.
+   * @param card
+   */
+  public addCard(card: Card): void {
+    this.hand.addCard(card);
+    if (this.hand.getIsBust()) {
+      this.status = PlayerStatus.Bust;
+    }
+  }
+
+  /**
+   * Puts the player in a 'stand' state.
+   */
+  public stand(): void {
+    this.status = PlayerStatus.Stand;
   }
 
   /**
@@ -59,14 +83,19 @@ export default class Player {
 
   /**
    * Applies the win multiplier to the player's wager amount and adds it to the chip stack.
-   * @param multiplier the amount to multiply the bet amount by.
    */
-  public applyWinMultiplier(multiplier: number): void {
+  public applyWinMultiplier(): void {
     if (this.betSize === null) {
       throw new Error('Bet size is null');
     }
 
-    this.stack.addChips(this.betSize * multiplier);
+    const winAmount =
+      this.betSize +
+      (this.hand.getIsBlackJack()
+        ? this.betSize * WIN_MULTIPLIER
+        : this.betSize * BLACKJACK_MULTIPLIER);
+
+    this.stack.addChips(winAmount);
     this.betSize = null;
   }
 

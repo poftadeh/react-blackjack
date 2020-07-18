@@ -1,4 +1,5 @@
 import Card from '../Card';
+import { PlayerStatus } from '../../types/PlayerStatus';
 
 export default class Hand {
   private cards: Card[] = [];
