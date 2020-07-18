@@ -44,6 +44,9 @@ export default class Player extends Dealer {
    * Applies the win multiplier to the player's wager amount and adds it to the chip stack.
    */
   public applyWinMultiplier(): void {
+    if (this.status === PlayerStatus.Bust) {
+      throw new Error('Win condition called for busted player.');
+    }
     const winAmount = this.hand.getIsBlackJack()
       ? this.betSize * BLACKJACK_WIN_MULTIPLIER
       : this.betSize * STANDARD_WIN_MULTIPLIER;
