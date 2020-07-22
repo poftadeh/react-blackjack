@@ -1,4 +1,4 @@
-import Player from '../gameLogic/Player';
+import Player from '../game/Player';
 import PlayerAction from '../types/PlayerAction';
 import { ADD_PLAYER, UPDATE_PLAYER } from '../actions/types';
 import StoredPlayer from '../types/StoredPlayer';

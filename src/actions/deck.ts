@@ -1,5 +1,5 @@
 import { SET_DECK } from './types';
-import Deck from '../gameLogic/Deck';
+import Deck from '../game/Deck';
 import DeckAction from '../types/DeckAction';
 
 export default (): DeckAction => {

@@ -50,4 +50,15 @@ export default class Deck {
   public getCards(): Card[] {
     return this.cards;
   }
+
+  /**
+   * Draws a card from the deck.
+   */
+  public drawCard(): Card {
+    if (this.cards.length === 0) {
+      this.generateCards();
+    }
+
+    return this.cards.pop() as Card;
+  }
 }

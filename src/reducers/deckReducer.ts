@@ -1,4 +1,4 @@
-import Deck from '../gameLogic/Deck';
+import Deck from '../game/Deck';
 import { SET_DECK } from '../actions/types';
 import DeckAction from '../types/DeckAction';
 

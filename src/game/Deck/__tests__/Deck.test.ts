@@ -1,5 +1,6 @@
 import Deck from '..';
 import { SUITS, RANKS, NUMBER_OF_DECKS } from '../../../constants';
+import Card from '../../Card';
 
 const STANDARD_DECK_SIZE = 52;
 
@@ -27,5 +28,10 @@ describe('Deck', () => {
     originalCards.forEach((card) => {
       expect(shuffledCards.includes(card)).toBe(true);
     });
+  });
+
+  it('should deal a card', () => {
+    const deck = new Deck();
+    expect(deck.drawCard()).toBeInstanceOf(Card);
   });
 });

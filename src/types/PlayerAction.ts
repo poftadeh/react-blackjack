@@ -1,4 +1,4 @@
-import Player from '../gameLogic/Player';
+import Player from '../game/Player';
 import StoredPlayer from './StoredPlayer';
 
 export default interface PlayerAction {

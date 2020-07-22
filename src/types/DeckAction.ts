@@ -1,4 +1,4 @@
-import Deck from '../gameLogic/Deck';
+import Deck from '../game/Deck';
 
 export default interface DeckAction {
   type: string;
