@@ -8,13 +8,23 @@ import { PlayerStatus } from '../../types/PlayerStatus';
 import Card from '../Card';
 
 export default class Player extends Dealer {
+  private name: string;
+
   private stack: Stack;
 
   private betSize = 0;
 
-  constructor(startingChips: number) {
+  constructor(name: string, startingChips: number) {
     super();
+    this.name = name;
     this.stack = new Stack(startingChips);
+  }
+
+  /**
+   * Returns the player's name.
+   */
+  public getName(): string {
+    return this.name;
   }
 
   /**
@@ -58,7 +68,7 @@ export default class Player extends Dealer {
    * Returns the player's bet size.
    */
   public getBetSize(): number {
-    return this.betSize ?? 0;
+    return this.betSize;
   }
 
   /**
