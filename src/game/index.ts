@@ -2,6 +2,7 @@ import Deck from './Deck';
 import Player from './Player';
 import Dealer from './Dealer';
 import { PlayerStatus } from '../types/PlayerStatus';
+import { GamePhase } from '../types/GamePhase';
 
 interface CreatedPlayer {
   name: string;
@@ -18,6 +19,8 @@ export default class Game {
   private dealer: Dealer;
 
   private activePlayer: Player;
+
+  private gamePhase = GamePhase;
 
   constructor(players: CreatedPlayer[]) {
     this.deck = new Deck();
@@ -69,6 +72,8 @@ export default class Game {
       this.players.forEach((player) => player.addCard(this.deck.drawCard()));
       this.dealer.addCard(this.deck.drawCard());
     }
+
+    this.gamePhase(GamePhase.PlayerHandPhase);
   }
 
   /**
