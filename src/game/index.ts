@@ -10,7 +10,7 @@ interface CreatedPlayer {
 
 const STARTING_HAND_SIZE = 2;
 
-class Game {
+export default class Game {
   private deck: Deck;
 
   private players: Player[];
