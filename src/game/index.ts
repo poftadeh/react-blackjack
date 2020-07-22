@@ -55,8 +55,8 @@ export default class Game {
     this.players.forEach((player) => player.reset());
 
     for (let i = 0; i < STARTING_HAND_SIZE; i += 1) {
-      this.dealer.addCard(this.deck.drawCard());
       this.players.forEach((player) => player.addCard(this.deck.drawCard()));
+      this.dealer.addCard(this.deck.drawCard());
     }
   }
 
@@ -64,7 +64,7 @@ export default class Game {
    * Deals a card to an active player.
    * @param playerName string representing the player's name
    */
-  public dealToPlayer(playerName: string): void {
+  public playerHit(playerName: string): void {
     const player = this.players.find(
       (player) => player.getName() === playerName,
     );
@@ -79,5 +79,18 @@ export default class Game {
 
     const card = this.deck.drawCard();
     player.addCard(card);
+  }
+
+  /**
+   * Plays out the dealer's hand. Stands on soft 17.
+   */
+  public playDealerHand(): void {
+    while (this.dealer.getHandValue() < 17) {
+      this.dealer.addCard(this.deck.drawCard());
+    }
+
+    if (!this.dealer.isBust()) {
+      this.dealer.stand();
+    }
   }
 }

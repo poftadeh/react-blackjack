@@ -38,6 +38,13 @@ export default class Dealer {
   }
 
   /**
+   * Returns the dealer's hand value.
+   */
+  public getHandValue(): number {
+    return this.hand.getValue();
+  }
+
+  /**
    * Returns a boolean indicating if the dealer's hand is busted.
    */
   public isBust(): boolean {
