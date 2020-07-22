@@ -84,8 +84,17 @@ describe('Player', () => {
     player.addCard(new Card('King', 'Spades'));
     player.addCard(new Card('King', 'Spades'));
 
-    player.reset();
+    player.drawNewHand();
+    player.resetBetSize();
     expect(player.getHand().getCards().length).toBe(0);
     expect(player.getBetSize()).toBe(0);
+  });
+
+  it('should handle push events', () => {
+    const player = new Player('foo', 1000);
+    player.bet(1000);
+    player.handlePush();
+
+    expect(player.getChipValue()).toBe(1000);
   });
 });

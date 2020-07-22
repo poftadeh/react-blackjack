@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
 export enum PlayerStatus {
-  Active,
-  Stand,
-  Bust,
+  Active = 'Active',
+  Stand = 'Stand',
+  Bust = 'Bust',
 }

@@ -102,4 +102,42 @@ describe('Game', () => {
     expect(player.getStatus()).toBe(PlayerStatus.Bust);
     expect(player.isBust()).toBe(true);
   });
+
+  it('handles a round outcome', () => {
+    const game = new Game([
+      { name: 'blackjack', startingChips: 1000 },
+      { name: 'bust', startingChips: 1000 },
+      { name: 'push', startingChips: 1000 },
+    ]);
+
+    const testCards = [
+      new Card('10', 'Spades'),
+      new Card('10', 'Hearts'),
+      new Card('King', 'Hearts'),
+      new Card('Queen', 'Hearts'),
+
+      new Card('Ace', 'Clubs'),
+      new Card('3', 'Diamonds'),
+      new Card('King', 'Diamonds'),
+      new Card('Queen', 'Diamonds'),
+      new Card('Jack', 'Spades'),
+    ];
+
+    jest
+      .spyOn(Deck.prototype, 'drawCard')
+      .mockImplementation(() => testCards.shift() as Card);
+
+    game.playerBet('blackjack', 1000);
+    game.playerBet('bust', 1000);
+    game.playerBet('push', 1000);
+
+    game.dealStartingHands();
+    game.playerHit('bust');
+    game.playerStand('push');
+    game.endRound();
+
+    expect(game.findPlayerByName('blackjack').getChipValue()).toBe(2500);
+    expect(game.findPlayerByName('bust').getChipValue()).toBe(0);
+    expect(game.findPlayerByName('push').getChipValue()).toBe(1000);
+  });
 });

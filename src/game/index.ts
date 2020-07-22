@@ -17,6 +17,8 @@ export default class Game {
 
   private dealer: Dealer;
 
+  private activePlayer: Player;
+
   constructor(players: CreatedPlayer[]) {
     this.deck = new Deck();
     this.dealer = new Dealer();
@@ -28,9 +30,18 @@ export default class Game {
   /**
    * Returns a player searched for by name.
    * @param playerName string representing the player's name to find.
+   * @returns {Player}
    */
-  public findPlayerByName(playerName: string): Player | undefined {
-    return this.players.find((player) => player.getName() === playerName);
+  public findPlayerByName(playerName: string): Player {
+    const player = this.players.find(
+      (player) => player.getName() === playerName,
+    );
+
+    if (!player) {
+      throw new Error(`Could not find player ${playerName}`);
+    }
+
+    return player;
   }
 
   /**
@@ -52,7 +63,7 @@ export default class Game {
    */
   public dealStartingHands(): void {
     this.dealer.drawNewHand();
-    this.players.forEach((player) => player.reset());
+    this.players.forEach((player) => player.drawNewHand());
 
     for (let i = 0; i < STARTING_HAND_SIZE; i += 1) {
       this.players.forEach((player) => player.addCard(this.deck.drawCard()));
@@ -65,13 +76,7 @@ export default class Game {
    * @param playerName string representing the player's name
    */
   public playerHit(playerName: string): void {
-    const player = this.players.find(
-      (player) => player.getName() === playerName,
-    );
-
-    if (!player) {
-      throw new Error(`Could not find player ${playerName}`);
-    }
+    const player = this.findPlayerByName(playerName);
 
     if (player.getStatus() !== PlayerStatus.Active) {
       throw new Error('Cannot deal card to an inactive player.');
@@ -79,6 +84,24 @@ export default class Game {
 
     const card = this.deck.drawCard();
     player.addCard(card);
+  }
+
+  /**
+   * Sets a player's hand status to stand.
+   * @param playerName the player's name
+   */
+  public playerStand(playerName: string): void {
+    const player = this.findPlayerByName(playerName);
+
+    if (player.getStatus() !== PlayerStatus.Active) {
+      throw new Error('Player cannot stand when not in an active state');
+    }
+
+    player.stand();
+  }
+
+  public playerBet(playerName: string, amount: number): void {
+    this.findPlayerByName(playerName).bet(amount);
   }
 
   /**
@@ -92,5 +115,28 @@ export default class Game {
     if (!this.dealer.isBust()) {
       this.dealer.stand();
     }
+  }
+
+  /**
+   * Handles the outcome at the end of the hand.
+   */
+  public endRound(): void {
+    this.playDealerHand();
+    const dealerHandValue = this.dealer.getHandValue();
+
+    this.players.forEach((player) => {
+      const playerHandValue = player.getHandValue();
+
+      if (playerHandValue === dealerHandValue) {
+        player.handlePush();
+      }
+
+      if (
+        player.getStatus() !== PlayerStatus.Bust &&
+        playerHandValue > dealerHandValue
+      ) {
+        player.applyWinMultiplier();
+      }
+    });
   }
 }

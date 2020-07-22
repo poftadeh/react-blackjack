@@ -57,11 +57,26 @@ export default class Player extends Dealer {
     if (this.status === PlayerStatus.Bust) {
       throw new Error('Win condition called for busted player.');
     }
+
     const winAmount = this.hand.getIsBlackJack()
       ? this.betSize * BLACKJACK_WIN_MULTIPLIER
       : this.betSize * STANDARD_WIN_MULTIPLIER;
 
     this.stack.addChips(winAmount);
+  }
+
+  /**
+   * Handles draw situations by returning bet chips to stack.
+   */
+  public handlePush(): void {
+    this.stack.addChips(this.betSize);
+  }
+
+  /**
+   * Returns the chip stack value for the player.
+   */
+  public getChipValue(): number {
+    return this.stack.getChips();
   }
 
   /**
@@ -82,10 +97,9 @@ export default class Player extends Dealer {
   }
 
   /**
-   * Resets hand and bet for a new round.
+   * Resets bet size for a new round.
    */
-  public reset(): void {
-    super.drawNewHand();
+  public resetBetSize(): void {
     this.betSize = 0;
   }
 }
