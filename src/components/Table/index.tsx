@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Hand from '../Hand';
-import HandControls from '../HandControls';
+import Hand from '../PlayerHand';
+import HandControls from '../PlayerHandControls';
 import CombinedRootState from '../../types/CombinedRootState';
 import SerializedPlayer from '../../types/SerializedPlayer';
 import { PlayerArea } from './style';
