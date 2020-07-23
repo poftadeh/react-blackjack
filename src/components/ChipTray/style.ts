@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
+export const Wrapper = styled.div`\
+  width: 100%;
 `;
 
 export const Tray = styled.div`

@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import NewGameMenu from './components/NewGameMenu';
 import ChipTray from './components/ChipTray';
 import CombinedRootState from './types/CombinedRootState';
+import Header from './components/Header';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -24,9 +25,11 @@ const GlobalStyle = createGlobalStyle`
 const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border: 2px solid green;
   max-width: 36rem;
   height: 100vh;
+  margin: 0 auto;
 `;
 
 interface Props {
@@ -37,8 +40,8 @@ const App: React.FC<Props> = ({ isGameMenuVisible }) => {
   return (
     <AppWrapper>
       <GlobalStyle />
-      {isGameMenuVisible && <NewGameMenu />}
-      <ChipTray />
+      <Header />
+      {isGameMenuVisible ? <NewGameMenu /> : <ChipTray />}
     </AppWrapper>
   );
 };
