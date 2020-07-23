@@ -1,27 +1,37 @@
-import PlayerAction from '../types/PlayerAction';
-import { ADD_PLAYER, UPDATE_PLAYER } from '../actions/types';
+import {
+  PlayerAction,
+  SetActivePlayerAction,
+  SetPlayerAction,
+} from '../types/PlayerAction';
+import { UPDATE_PLAYER, SET_ACTIVE_PLAYER } from '../actions/types';
 import StoredPlayer from '../types/StoredPlayer';
 
 interface PlayerState {
+  activePlayer: string | null;
   players: StoredPlayer[];
 }
 
 const initialState: PlayerState = {
+  activePlayer: null,
   players: [],
 };
 
 export default (state = initialState, action: PlayerAction): PlayerState => {
   switch (action.type) {
-    case ADD_PLAYER:
-      return { players: [...state.players, action.player] };
     case UPDATE_PLAYER:
       return {
+        ...state,
         players: [
           ...state.players.filter(
-            (player) => player.name !== action.player.name,
+            (player) => player.name !== (action as SetPlayerAction).player.name,
           ),
-          action.player,
+          (action as SetPlayerAction).player,
         ],
+      };
+    case SET_ACTIVE_PLAYER:
+      return {
+        ...state,
+        activePlayer: (action as SetActivePlayerAction).activePlayer,
       };
     default:
       return state;
