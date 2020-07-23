@@ -1,13 +1,13 @@
-import StoredPlayer from './StoredPlayer';
+import SerializedPlayer from './StoredPlayer';
 
 export interface SetPlayerAction {
   type: string;
-  player: StoredPlayer;
+  player: SerializedPlayer;
 }
 
 export interface SetActivePlayerAction {
   type: string;
-  activePlayer: string;
+  activePlayer: SerializedPlayer;
 }
 
 export type PlayerAction = SetPlayerAction | SetActivePlayerAction;

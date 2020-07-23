@@ -16,7 +16,7 @@ export const startGame = (players: CreatedPlayer[]): AppThunk => (dispatch) => {
   game = new Game(players);
   dispatch(setGamePhase(GamePhase.Betting));
   dispatch(setGameMenuVisibility(false));
-  dispatch(setActivePlayer(game.getActivePlayerName()));
+  dispatch(setActivePlayer());
 };
 
 export const setGameMenuVisibility = (
@@ -26,9 +26,9 @@ export const setGameMenuVisibility = (
   isGameMenuVisible,
 });
 
-export const setActivePlayer = (name: string): PlayerAction => ({
+export const setActivePlayer = (): PlayerAction => ({
   type: SET_ACTIVE_PLAYER,
-  activePlayer: name,
+  activePlayer: game.getSerializedActivePlayer(),
 });
 
 export const setGamePhase = (phase: GamePhase): GameAction => ({
@@ -43,5 +43,5 @@ export const bet = (amount: number): AppThunk => (dispatch) => {
     type: UPDATE_PLAYER,
     player: game.findPlayerByName(bettingPlayer).serialize(),
   });
-  dispatch(setActivePlayer(game.getActivePlayerName()));
+  dispatch(setActivePlayer());
 };

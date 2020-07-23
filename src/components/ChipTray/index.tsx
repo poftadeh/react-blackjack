@@ -10,12 +10,15 @@ import {
   BetButton,
   ControlPanel,
 } from './style';
+import SerializedPlayer from '../../types/StoredPlayer';
+import CombinedRootState from '../../types/CombinedRootState';
 
 interface Props {
   bet: (amount: number) => void;
+  activePlayer?: SerializedPlayer | null;
 }
 
-const ChipTray: React.FC<Props> = ({ bet }) => {
+const ChipTray: React.FC<Props> = ({ bet, activePlayer }) => {
   const [betAmount, setBetAmount] = useState<number>(0);
 
   const handleClick = (amount: number): void => {
@@ -29,7 +32,9 @@ const ChipTray: React.FC<Props> = ({ bet }) => {
       <Tray>
         <ControlPanel>
           <ClearButton onClick={clearBet}>Clear</ClearButton>
-          <BetDisplay>${betAmount}</BetDisplay>
+          <BetDisplay>
+            ${betAmount} ({activePlayer?.name})
+          </BetDisplay>
           <BetButton disabled={!betAmount} onClick={() => bet(betAmount)}>
             Bet
           </BetButton>
@@ -47,4 +52,8 @@ const ChipTray: React.FC<Props> = ({ bet }) => {
   );
 };
 
-export default connect(null, { bet })(ChipTray);
+const mapStateToProps = (state: CombinedRootState) => ({
+  activePlayer: state.player.activePlayer,
+});
+
+export default connect(mapStateToProps, { bet })(ChipTray);

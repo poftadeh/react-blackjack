@@ -3,6 +3,7 @@ import Player from './Player';
 import Dealer from './Dealer';
 import { PlayerStatus } from '../types/PlayerStatus';
 import { GamePhase } from '../types/GamePhase';
+import SerializedPlayer from '../types/StoredPlayer';
 
 export interface CreatedPlayer {
   name: string;
@@ -187,5 +188,17 @@ export default class Game {
         player.applyWinMultiplier();
       }
     });
+  }
+
+  public getSerializedActivePlayer(): SerializedPlayer {
+    const activePlayer = this.players.find(
+      (player) => player.getName() === this.activePlayer.getName(),
+    );
+
+    if (!activePlayer) {
+      throw new Error('Could not retrieve active player');
+    }
+
+    return activePlayer.serialize();
   }
 }

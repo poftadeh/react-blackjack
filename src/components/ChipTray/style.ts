@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`\
+export const Wrapper = styled.div`
   width: 100%;
 `;
 
@@ -43,8 +43,10 @@ const ControlButton = styled.button`
   color: #fff;
   font-weight: 700;
   margin-top: 1rem;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   background-color: #e67e22;
-  cursor: pointer;
+  text-transform: uppercase;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
 export const BetButton = styled(ControlButton)`
@@ -59,5 +61,5 @@ export const ControlPanel = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 2rem;
+  margin: 1rem 0 2rem 0;
 `;

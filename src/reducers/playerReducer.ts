@@ -4,12 +4,7 @@ import {
   SetPlayerAction,
 } from '../types/PlayerAction';
 import { UPDATE_PLAYER, SET_ACTIVE_PLAYER } from '../actions/types';
-import StoredPlayer from '../types/StoredPlayer';
-
-interface PlayerState {
-  activePlayer: string | null;
-  players: StoredPlayer[];
-}
+import PlayerState from '../types/PlayerState';
 
 const initialState: PlayerState = {
   activePlayer: null,
