@@ -29,10 +29,11 @@ export const setGamePhase = (phase: GamePhase): GameAction => ({
   phase,
 });
 
-export const playerBet = (name: string, amount: number): AppThunk => (
-  dispatch,
-) => {
-  const player = game.findPlayerByName(name);
-  player.bet(amount);
-  dispatch({ type: UPDATE_PLAYER, player: player.serialize() });
+export const bet = (amount: number): AppThunk => (dispatch) => {
+  const bettingPlayer = game.getActivePlayerName();
+  game.bet(amount);
+  dispatch({
+    type: UPDATE_PLAYER,
+    player: game.findPlayerByName(bettingPlayer).serialize(),
+  });
 };

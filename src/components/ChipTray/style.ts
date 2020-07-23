@@ -35,7 +35,7 @@ export const BetDisplay = styled.h3`
   min-width: 3ch;
 `;
 
-export const DealButton = styled.button`
+export const BetButton = styled.button`
   font-size: 1.5rem;
 `;
 

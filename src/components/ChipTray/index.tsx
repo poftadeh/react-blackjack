@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { startGame } from '../../actions';
-import { CreatedPlayer } from '../../game';
+import { bet } from '../../actions';
 import {
   Tray,
   Chip,
   BetDisplay,
   Wrapper,
   ClearButton,
-  DealButton,
+  BetButton,
   ControlPanel,
 } from './style';
 
 interface Props {
-  startGame: (players: CreatedPlayer[]) => void;
+  bet: (amount: number) => void;
 }
 
-const ChipTray: React.FC<Props> = ({ startGame }) => {
+const ChipTray: React.FC<Props> = ({ bet }) => {
   const [betAmount, setBetAmount] = useState<number>(0);
 
   const handleClick = (amount: number): void => {
@@ -31,7 +30,9 @@ const ChipTray: React.FC<Props> = ({ startGame }) => {
         <ControlPanel>
           <ClearButton onClick={clearBet}>Clear</ClearButton>
           <BetDisplay>${betAmount}</BetDisplay>
-          <DealButton>Deal</DealButton>
+          <BetButton disabled={!betAmount} onClick={() => bet(betAmount)}>
+            Bet
+          </BetButton>
         </ControlPanel>
         <div className="chips">
           <Chip onClick={() => handleClick(1)}>$1</Chip>
@@ -46,4 +47,4 @@ const ChipTray: React.FC<Props> = ({ startGame }) => {
   );
 };
 
-export default connect(null, { startGame })(ChipTray);
+export default connect(null, { bet })(ChipTray);
