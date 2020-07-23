@@ -18,9 +18,9 @@ const Card: React.FC<Props> = ({ rank, suit }) => {
   return (
     <CardContainer>
       <CardBase
-        src={`assets/images/${rank.charAt(0)}${suit.charAt(
-          0,
-        )}${specialChar}.svg`}
+        src={`assets/images/${
+          rankCharacter === '1' ? 'T' : rankCharacter
+        }${suitCharacter}${specialChar}.svg`}
       />
     </CardContainer>
   );

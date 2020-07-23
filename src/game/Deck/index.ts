@@ -6,6 +6,7 @@ export default class Deck {
 
   constructor() {
     this.generateCards();
+    this.shuffle();
   }
 
   /**

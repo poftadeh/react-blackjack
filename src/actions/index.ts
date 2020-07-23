@@ -45,3 +45,33 @@ export const bet = (amount: number): AppThunk => (dispatch) => {
   });
   dispatch(setActivePlayer());
 };
+
+export const hit = (): AppThunk => (dispatch) => {
+  const hittingPlayer = game.getActivePlayerName();
+  game.hit();
+  dispatch({
+    type: UPDATE_PLAYER,
+    player: game.findPlayerByName(hittingPlayer).serialize(),
+  });
+  dispatch(setActivePlayer());
+};
+
+export const stand = (): AppThunk => (dispatch) => {
+  const standingPlayer = game.getActivePlayerName();
+  game.stand();
+  dispatch({
+    type: UPDATE_PLAYER,
+    player: game.findPlayerByName(standingPlayer).serialize(),
+  });
+  dispatch(setActivePlayer());
+};
+
+export const double = (): AppThunk => (dispatch) => {
+  const doublingPlayer = game.getActivePlayerName();
+  game.double();
+  dispatch({
+    type: UPDATE_PLAYER,
+    player: game.findPlayerByName(doublingPlayer).serialize(),
+  });
+  dispatch(setActivePlayer());
+};

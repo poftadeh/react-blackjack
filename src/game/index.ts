@@ -99,6 +99,10 @@ export default class Game {
 
     const card = this.deck.drawCard();
     player.addCard(card);
+
+    if (player.isBust() || player.isHoldingBlackjack()) {
+      this.nextActivePlayer();
+    }
   }
 
   /**
@@ -113,6 +117,26 @@ export default class Game {
     }
 
     player.stand();
+    this.nextActivePlayer();
+  }
+
+  /**
+   * Sets a player's hand status to stand.
+   * @param playerName the player's name
+   */
+  public double(): void {
+    const player = this.activePlayer;
+
+    if (player.getStatus() !== PlayerStatus.Active) {
+      throw new Error('Player cannot double when not in an active state');
+    }
+
+    if (player.getHand().getCards().length !== 2) {
+      throw new Error('Player can only double with two cards in hand.');
+    }
+
+    const card = this.deck.drawCard();
+    player.doubleDown(card);
     this.nextActivePlayer();
   }
 

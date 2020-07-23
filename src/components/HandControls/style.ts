@@ -8,7 +8,8 @@ export const HandControlWrapper = styled.div`
 export const HandControlButton = styled.button`
   border: none;
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   border-radius: 4px;
   background-color: magenta;
+  text-transform: uppercase;
 `;
