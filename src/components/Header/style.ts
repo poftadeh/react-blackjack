@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   padding: 2rem;
-  background-color: #3b1443;
+  background-color: #2c3e50;
   text-transform: uppercase;
 `;
 
