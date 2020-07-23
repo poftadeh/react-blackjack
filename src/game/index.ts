@@ -18,7 +18,7 @@ export default class Game {
 
   private dealer: Dealer;
 
-  private activePlayer: Player;
+  // private activePlayer: Player;
 
   private gamePhase = GamePhase;
 
@@ -72,8 +72,6 @@ export default class Game {
       this.players.forEach((player) => player.addCard(this.deck.drawCard()));
       this.dealer.addCard(this.deck.drawCard());
     }
-
-    this.gamePhase(GamePhase.PlayerHandPhase);
   }
 
   /**
