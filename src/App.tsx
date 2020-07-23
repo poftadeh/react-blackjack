@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react';
+import { connect } from 'react-redux';
 import styled, { createGlobalStyle } from 'styled-components';
 import NewGameMenu from './components/NewGameMenu';
+import CombinedRootState from './types/CombinedRootState';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -36,4 +38,8 @@ function App(): ReactElement {
   );
 }
 
-export default App;
+const mapStateToProps = (state: CombinedRootState) => ({
+  isGameMenuVisible: state.game.isGameMenuVisible,
+});
+
+export default connect(mapStateToProps)(App);

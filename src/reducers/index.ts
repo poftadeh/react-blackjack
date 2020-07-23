@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import deckReducer from './deckReducer';
-import playerReducer from './playerReducer';
+import gameReducer from './gameReducer';
 
-export default combineReducers({ deck: deckReducer, player: playerReducer });
+export default combineReducers({ game: gameReducer });

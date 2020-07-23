@@ -4,7 +4,7 @@ import Dealer from './Dealer';
 import { PlayerStatus } from '../types/PlayerStatus';
 import { GamePhase } from '../types/GamePhase';
 
-interface CreatedPlayer {
+export interface CreatedPlayer {
   name: string;
   startingChips: number;
 }

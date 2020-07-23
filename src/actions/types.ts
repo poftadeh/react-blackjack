@@ -1,3 +1,5 @@
 export const SET_DECK = 'SET_DECK';
 export const UPDATE_PLAYER = 'UPDATE_PLAYER';
 export const ADD_PLAYER = 'ADD_PLAYER';
+export const SET_GAME_PHASE = 'SET_GAME_PHASE';
+export const SET_GAME_MENU_VISIBILITY = 'SET_GAME_MENU_VISIBILITY';

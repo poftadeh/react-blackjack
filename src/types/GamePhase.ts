@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/prefer-default-export
 export enum GamePhase {
-  BettingPhase = 'BettingPhase',
-  PlayerHandPhase = 'PlayerHandPhase',
-  DealerHandPhase = 'DealerHandPhase',
-  ResultScreen = 'ResultScreen',
+  Menu = 'Menu',
+  Betting = 'Betting',
+  PlayerHand = 'PlayerHand',
+  DealerHand = 'DealerHand',
+  Results = 'Results',
 }
