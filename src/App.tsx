@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import NewGameMenu from './components/NewGameMenu';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -18,8 +19,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   border: 2px solid green;
-  background-color: orangered;
   max-width: 36rem;
   margin: 0 auto;
   height: 100vh;
@@ -29,6 +31,7 @@ function App(): ReactElement {
   return (
     <AppWrapper>
       <GlobalStyle />
+      <NewGameMenu />
     </AppWrapper>
   );
 }
