@@ -10,4 +10,9 @@ export interface SetPhaseAction {
   phase: GamePhase;
 }
 
-export type GameAction = SetMenuAction | SetPhaseAction;
+export interface PlayerBetAction {
+  type: string;
+  amount: number;
+}
+
+export type GameAction = SetMenuAction | SetPhaseAction | PlayerBetAction;

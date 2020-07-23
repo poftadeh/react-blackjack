@@ -20,6 +20,8 @@ describe('Game', () => {
       { name: 'baz', startingChips: 3000 },
     ];
     const game = new Game(players);
+    expect(game.getActivePlayerName()).toBe('foo');
+
     game.dealStartingHands();
 
     expect(game.getDealer().getHand().getCards().length).toBe(2);
@@ -127,9 +129,9 @@ describe('Game', () => {
       .spyOn(Deck.prototype, 'drawCard')
       .mockImplementation(() => testCards.shift() as Card);
 
-    game.playerBet('blackjack', 1000);
-    game.playerBet('bust', 1000);
-    game.playerBet('push', 1000);
+    game.placeBetByPlayerName('blackjack', 1000);
+    game.placeBetByPlayerName('bust', 1000);
+    game.placeBetByPlayerName('push', 1000);
 
     game.dealStartingHands();
     game.playerHit('bust');

@@ -18,7 +18,7 @@ export default class Game {
 
   private dealer: Dealer;
 
-  // private activePlayer: Player;
+  private activePlayer: Player;
 
   private gamePhase = GamePhase;
 
@@ -28,6 +28,8 @@ export default class Game {
     this.players = players.map(
       ({ name, startingChips }) => new Player(name, startingChips),
     );
+    const [firstPlayer] = this.players;
+    this.activePlayer = firstPlayer;
   }
 
   /**
@@ -59,6 +61,13 @@ export default class Game {
    */
   public getPlayers(): Player[] {
     return this.players;
+  }
+
+  /**
+   * Returns the current active player.
+   */
+  public getActivePlayerName(): string {
+    return this.activePlayer.getName();
   }
 
   /**
@@ -103,7 +112,40 @@ export default class Game {
     player.stand();
   }
 
-  public playerBet(playerName: string, amount: number): void {
+  /**
+   * Gives a turn to the next active player.
+   */
+  public nextActivePlayer(): void {
+    const activePlayerIndex = this.players.findIndex(
+      (player) => player.getName() === this.activePlayer.getName(),
+    );
+
+    if (!activePlayerIndex) {
+      throw new Error('Failed to find the index of the active player');
+    }
+
+    this.activePlayer = this.players[
+      (activePlayerIndex + 1) % this.players.length
+    ];
+  }
+
+  /**
+   * Places a bet for the active player
+   * @param playerName
+   * @param amount
+   */
+
+  public bet(amount: number): void {
+    this.activePlayer.bet(amount);
+    this.nextActivePlayer();
+  }
+
+  /**
+   * Places a bet for a player selected by name.
+   * @param playerName
+   * @param amount
+   */
+  public placeBetByPlayerName(playerName: string, amount: number): void {
     this.findPlayerByName(playerName).bet(amount);
   }
 
