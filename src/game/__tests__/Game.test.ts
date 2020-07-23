@@ -13,7 +13,7 @@ describe('Game', () => {
     expect(game.getPlayers()[0]).toBeInstanceOf(Player);
   });
 
-  it('should deal the starting hands correctly', () => {
+  it('should deal the starting hands and handle active players correctly', () => {
     const players = [
       { name: 'foo', startingChips: 2000 },
       { name: 'bar', startingChips: 3000 },
@@ -22,7 +22,14 @@ describe('Game', () => {
     const game = new Game(players);
     expect(game.getActivePlayerName()).toBe('foo');
 
-    game.dealStartingHands();
+    game.bet(1000);
+    expect(game.getActivePlayerName()).toBe('bar');
+
+    game.bet(2000);
+    expect(game.getActivePlayerName()).toBe('baz');
+
+    game.bet(3000);
+    expect(game.getActivePlayerName()).toBe('foo');
 
     expect(game.getDealer().getHand().getCards().length).toBe(2);
     game
@@ -45,8 +52,8 @@ describe('Game', () => {
       .spyOn(Deck.prototype, 'drawCard')
       .mockImplementation(() => testCards.shift() as Card);
 
-    game.dealStartingHands();
-    game.playDealerHand();
+    game.bet(200);
+    game.stand();
 
     const dealer = game.getDealer();
 
@@ -70,8 +77,8 @@ describe('Game', () => {
       .spyOn(Deck.prototype, 'drawCard')
       .mockImplementation(() => testCards.shift() as Card);
 
-    game.dealStartingHands();
-    game.playDealerHand();
+    game.bet(1);
+    game.stand();
 
     const dealer = game.getDealer();
 
@@ -95,8 +102,8 @@ describe('Game', () => {
       .spyOn(Deck.prototype, 'drawCard')
       .mockImplementation(() => testCards.shift() as Card);
 
-    game.dealStartingHands();
-    game.playerHit('foo');
+    game.bet(200);
+    game.hit();
 
     const player = game.findPlayerByName('foo') as Player;
 
@@ -129,13 +136,12 @@ describe('Game', () => {
       .spyOn(Deck.prototype, 'drawCard')
       .mockImplementation(() => testCards.shift() as Card);
 
-    game.placeBetByPlayerName('blackjack', 1000);
-    game.placeBetByPlayerName('bust', 1000);
-    game.placeBetByPlayerName('push', 1000);
+    game.bet(1000);
+    game.bet(1000);
+    game.bet(1000);
 
-    game.dealStartingHands();
-    game.playerHit('bust');
-    game.playerStand('push');
+    game.hit();
+    game.stand();
     game.endRound();
 
     expect(game.findPlayerByName('blackjack').getChipValue()).toBe(2500);

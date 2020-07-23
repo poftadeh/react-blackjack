@@ -32,4 +32,16 @@ describe('Hand', () => {
     expect(hand.getIsBust()).toBe(false);
     expect(hand.getIsBlackJack()).toBe(true);
   });
+
+  it('should calculate Aces properly', () => {
+    const hand = new Hand();
+    hand.addCard(new Card('Ace', 'Clubs'));
+    hand.addCard(new Card('Ace', 'Hearts'));
+    hand.addCard(new Card('Ace', 'Hearts'));
+    hand.addCard(new Card('Ace', 'Diamonds'));
+
+    expect(hand.getValue()).toBe(14);
+    expect(hand.getIsBust()).toBe(false);
+    expect(hand.getIsBlackJack()).toBe(false);
+  });
 });

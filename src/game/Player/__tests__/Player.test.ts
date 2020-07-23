@@ -67,9 +67,8 @@ describe('Player', () => {
     const betAmount = 500;
     player.bet(betAmount);
 
-    player.addCard(new Card('Ace', 'Clubs'));
-    player.addCard(new Card('Ace', 'Spades'));
-    player.doubleDown(new Card('Queen', 'Hearts'));
+    player.addCard(new Card('10', 'Clubs'));
+    player.doubleDown(new Card('9', 'Hearts'));
 
     player.applyWinMultiplier();
     expect(player.getStack().getChips()).toBe(

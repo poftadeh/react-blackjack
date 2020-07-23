@@ -94,7 +94,6 @@ export default class Player extends Dealer {
   public doubleDown(card: Card): void {
     this.addCard(card);
     this.bet(this.betSize);
-    this.status = PlayerStatus.Stand;
   }
 
   /**

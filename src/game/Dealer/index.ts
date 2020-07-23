@@ -21,10 +21,6 @@ export default class Dealer {
     if (this.hand.getIsBust()) {
       this.status = PlayerStatus.Bust;
     }
-
-    if (this.hand.getIsBlackJack()) {
-      this.status = PlayerStatus.Stand;
-    }
   }
 
   /**

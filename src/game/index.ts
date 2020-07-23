@@ -20,7 +20,7 @@ export default class Game {
 
   private activePlayer: Player;
 
-  private gamePhase = GamePhase;
+  private gamePhase: GamePhase;
 
   constructor(players: CreatedPlayer[]) {
     this.deck = new Deck();
@@ -30,6 +30,7 @@ export default class Game {
     );
     const [firstPlayer] = this.players;
     this.activePlayer = firstPlayer;
+    this.gamePhase = GamePhase.Betting;
   }
 
   /**
@@ -81,14 +82,15 @@ export default class Game {
       this.players.forEach((player) => player.addCard(this.deck.drawCard()));
       this.dealer.addCard(this.deck.drawCard());
     }
+    this.gamePhase = GamePhase.PlayerHand;
   }
 
   /**
    * Deals a card to an active player.
    * @param playerName string representing the player's name
    */
-  public playerHit(playerName: string): void {
-    const player = this.findPlayerByName(playerName);
+  public hit(): void {
+    const player = this.activePlayer;
 
     if (player.getStatus() !== PlayerStatus.Active) {
       throw new Error('Cannot deal card to an inactive player.');
@@ -102,14 +104,15 @@ export default class Game {
    * Sets a player's hand status to stand.
    * @param playerName the player's name
    */
-  public playerStand(playerName: string): void {
-    const player = this.findPlayerByName(playerName);
+  public stand(): void {
+    const player = this.activePlayer;
 
     if (player.getStatus() !== PlayerStatus.Active) {
       throw new Error('Player cannot stand when not in an active state');
     }
 
     player.stand();
+    this.nextActivePlayer();
   }
 
   /**
@@ -120,13 +123,21 @@ export default class Game {
       (player) => player.getName() === this.activePlayer.getName(),
     );
 
-    if (!activePlayerIndex) {
+    if (!Number.isInteger(activePlayerIndex)) {
       throw new Error('Failed to find the index of the active player');
     }
 
     this.activePlayer = this.players[
       (activePlayerIndex + 1) % this.players.length
     ];
+
+    if (activePlayerIndex === this.players.length - 1) {
+      if (this.gamePhase === GamePhase.Betting) {
+        this.dealStartingHands();
+      } else {
+        this.playDealerHand();
+      }
+    }
   }
 
   /**
@@ -141,18 +152,11 @@ export default class Game {
   }
 
   /**
-   * Places a bet for a player selected by name.
-   * @param playerName
-   * @param amount
-   */
-  public placeBetByPlayerName(playerName: string, amount: number): void {
-    this.findPlayerByName(playerName).bet(amount);
-  }
-
-  /**
    * Plays out the dealer's hand. Stands on soft 17.
    */
   public playDealerHand(): void {
+    this.gamePhase = GamePhase.DealerHand;
+
     while (this.dealer.getHandValue() < 17) {
       this.dealer.addCard(this.deck.drawCard());
     }
