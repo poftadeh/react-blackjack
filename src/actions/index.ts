@@ -4,11 +4,13 @@ import {
   SET_GAME_MENU_VISIBILITY,
   UPDATE_PLAYER,
   SET_ACTIVE_PLAYER,
+  UPDATE_DEALER_HAND,
 } from './types';
 import Game, { CreatedPlayer } from '../game';
 import { AppThunk } from '../types/AppThunk';
 import { GameAction } from '../types/GameAction';
 import { PlayerAction } from '../types/PlayerAction';
+import SerializedPlayer from '../types/SerializedPlayer';
 
 let game: Game;
 
@@ -36,42 +38,46 @@ export const setGamePhase = (phase: GamePhase): GameAction => ({
   phase,
 });
 
-export const bet = (amount: number): AppThunk => (dispatch) => {
-  const bettingPlayer = game.getActivePlayerName();
-  game.bet(amount);
+export const update = (player: SerializedPlayer): AppThunk => (dispatch) => {
   dispatch({
     type: UPDATE_PLAYER,
-    player: game.findPlayerByName(bettingPlayer).serialize(),
+    player,
   });
   dispatch(setActivePlayer());
+};
+
+export const bet = (amount: number): AppThunk => (dispatch) => {
+  const bettingPlayer = game.getSerializedActivePlayer();
+  game.bet(amount);
+  dispatch(update(bettingPlayer));
 };
 
 export const hit = (): AppThunk => (dispatch) => {
-  const hittingPlayer = game.getActivePlayerName();
+  const hittingPlayer = game.getSerializedActivePlayer();
   game.hit();
-  dispatch({
-    type: UPDATE_PLAYER,
-    player: game.findPlayerByName(hittingPlayer).serialize(),
-  });
-  dispatch(setActivePlayer());
+  dispatch(update(hittingPlayer));
 };
 
 export const stand = (): AppThunk => (dispatch) => {
-  const standingPlayer = game.getActivePlayerName();
+  const standingPlayer = game.getSerializedActivePlayer();
   game.stand();
-  dispatch({
-    type: UPDATE_PLAYER,
-    player: game.findPlayerByName(standingPlayer).serialize(),
-  });
-  dispatch(setActivePlayer());
+  dispatch(update(standingPlayer));
 };
 
 export const double = (): AppThunk => (dispatch) => {
-  const doublingPlayer = game.getActivePlayerName();
+  const doublingPlayer = game.getSerializedActivePlayer();
   game.double();
+  dispatch(update(doublingPlayer));
+};
+
+export const updateDealerHand = (): AppThunk => (dispatch) => {
   dispatch({
-    type: UPDATE_PLAYER,
-    player: game.findPlayerByName(doublingPlayer).serialize(),
+    type: UPDATE_DEALER_HAND,
+    hand: game.getDealer().serializeHand(),
   });
-  dispatch(setActivePlayer());
+};
+
+export const playDealerHand = (): AppThunk => (dispatch) => {
+  game.playDealerHand();
+  dispatch(updateDealerHand());
 };

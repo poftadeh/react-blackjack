@@ -1,4 +1,5 @@
 import { GamePhase } from './GamePhase';
+import { SerializedHand } from './SerializedHand';
 
 export interface SetMenuAction {
   type: string;
@@ -15,4 +16,13 @@ export interface PlayerBetAction {
   amount: number;
 }
 
-export type GameAction = SetMenuAction | SetPhaseAction | PlayerBetAction;
+export interface SetDealerHandAction {
+  type: string;
+  dealerHand: SerializedHand;
+}
+
+export type GameAction =
+  | SetMenuAction
+  | SetPhaseAction
+  | PlayerBetAction
+  | SetDealerHandAction;

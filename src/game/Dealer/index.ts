@@ -1,6 +1,7 @@
 import Hand from '../Hand';
 import { PlayerStatus } from '../../types/PlayerStatus';
 import Card from '../Card';
+import { SerializedHand } from '../../types/SerializedHand';
 
 export default class Dealer {
   protected hand: Hand;
@@ -70,5 +71,14 @@ export default class Dealer {
    */
   public drawNewHand(): void {
     this.hand = new Hand();
+  }
+
+  /**
+   * Returns the serialized form of the hand for storage.
+   */
+  public serializeHand(): SerializedHand {
+    return this.hand
+      .getCards()
+      .map((card) => ({ suit: card.getSuit(), rank: card.getRank() }));
   }
 }
