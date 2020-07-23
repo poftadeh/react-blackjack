@@ -5,6 +5,7 @@ import NewGameMenu from './components/NewGameMenu';
 import ChipTray from './components/ChipTray';
 import CombinedRootState from './types/CombinedRootState';
 import Header from './components/Header';
+import Table from './components/Table';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -15,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   
   html {
     font-size: 62.5%;
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -41,7 +43,14 @@ const App: React.FC<Props> = ({ isGameMenuVisible }) => {
     <AppWrapper>
       <GlobalStyle />
       <Header />
-      {isGameMenuVisible ? <NewGameMenu /> : <ChipTray />}
+      {isGameMenuVisible ? (
+        <NewGameMenu />
+      ) : (
+        <>
+          <Table />
+          <ChipTray />
+        </>
+      )}
     </AppWrapper>
   );
 };
