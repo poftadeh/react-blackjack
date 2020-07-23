@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Hand from '../Hand';
+import HandControls from '../HandControls';
 import CombinedRootState from '../../types/CombinedRootState';
 import SerializedPlayer from '../../types/StoredPlayer';
+import { PlayerArea } from './style';
 
 interface Props {
   activePlayer?: SerializedPlayer;
@@ -10,9 +12,10 @@ interface Props {
 
 const Table: React.FC<Props> = ({ activePlayer }) => {
   return (
-    <>
+    <PlayerArea>
       <Hand />
-    </>
+      <HandControls />
+    </PlayerArea>
   );
 };
 
