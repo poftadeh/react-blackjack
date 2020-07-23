@@ -9,6 +9,7 @@ let game: Game;
 export const startGame = (players: CreatedPlayer[]): AppThunk => (dispatch) => {
   game = new Game(players);
   dispatch(setGamePhase(GamePhase.Betting));
+  dispatch(setGameMenuVisibility(false));
 };
 
 export const setGameMenuVisibility = (

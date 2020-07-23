@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styled, { createGlobalStyle } from 'styled-components';
 import NewGameMenu from './components/NewGameMenu';
@@ -29,14 +29,18 @@ const AppWrapper = styled.div`
   height: 100vh;
 `;
 
-function App(): ReactElement {
+interface Props {
+  isGameMenuVisible: boolean;
+}
+
+const App: React.FC<Props> = ({ isGameMenuVisible }) => {
   return (
     <AppWrapper>
       <GlobalStyle />
-      <NewGameMenu />
+      {isGameMenuVisible && <NewGameMenu />}
     </AppWrapper>
   );
-}
+};
 
 const mapStateToProps = (state: CombinedRootState) => ({
   isGameMenuVisible: state.game.isGameMenuVisible,
