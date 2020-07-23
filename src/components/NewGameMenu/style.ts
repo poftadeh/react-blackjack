@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const MenuWrapper = styled.div`
+  position: fixed;
   border: 2px solid pink;
-  margin: 35vh 4rem;
+  top: 40%;
+  left: 30%;
   text-align: center;
   padding: 3rem;
 `;

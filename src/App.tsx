@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled, { createGlobalStyle } from 'styled-components';
 import NewGameMenu from './components/NewGameMenu';
+import ChipTray from './components/ChipTray';
 import CombinedRootState from './types/CombinedRootState';
 
 const GlobalStyle = createGlobalStyle`
@@ -25,7 +26,6 @@ const AppWrapper = styled.div`
   flex-direction: column;
   border: 2px solid green;
   max-width: 36rem;
-  margin: 0 auto;
   height: 100vh;
 `;
 
@@ -38,6 +38,7 @@ const App: React.FC<Props> = ({ isGameMenuVisible }) => {
     <AppWrapper>
       <GlobalStyle />
       {isGameMenuVisible && <NewGameMenu />}
+      <ChipTray />
     </AppWrapper>
   );
 };
