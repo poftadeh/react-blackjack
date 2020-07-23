@@ -3,7 +3,7 @@ import Player from './Player';
 import Dealer from './Dealer';
 import { PlayerStatus } from '../types/PlayerStatus';
 import { GamePhase } from '../types/GamePhase';
-import SerializedPlayer from '../types/StoredPlayer';
+import SerializedPlayer from '../types/SerializedPlayer';
 
 export interface CreatedPlayer {
   name: string;

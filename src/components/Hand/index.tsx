@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { HandWrapper, HandContainer, HandScore } from './style';
 import Card from '../Card';
 import CombinedRootState from '../../types/CombinedRootState';
-import SerializedPlayer from '../../types/StoredPlayer';
+import SerializedPlayer from '../../types/SerializedPlayer';
 
 interface Props {
   activePlayer?: SerializedPlayer;

@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { HandControlButton, HandControlWrapper } from './style';
 import CombinedRootState from '../../types/CombinedRootState';
-import SerializedPlayer from '../../types/StoredPlayer';
+import SerializedPlayer from '../../types/SerializedPlayer';
 import { hit, stand, double } from '../../actions';
+import { PlayerStatus } from '../../types/PlayerStatus';
 
 interface Props {
   activePlayer?: SerializedPlayer | null;
@@ -21,7 +22,7 @@ const HandControls: React.FC<Props> = ({
   if (!activePlayer?.hand.length) return null;
 
   return (
-    <HandControlWrapper>
+    <HandControlWrapper hide={activePlayer.status !== PlayerStatus.Active}>
       <HandControlButton onClick={hit}>Hit</HandControlButton>
       <HandControlButton onClick={stand}>Stand</HandControlButton>
       <HandControlButton onClick={double}>Double</HandControlButton>

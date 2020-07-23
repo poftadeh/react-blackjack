@@ -6,7 +6,7 @@ import {
 import Dealer from '../Dealer';
 import { PlayerStatus } from '../../types/PlayerStatus';
 import Card from '../Card';
-import SerializedPlayer from '../../types/StoredPlayer';
+import SerializedPlayer from '../../types/SerializedPlayer';
 
 export default class Player extends Dealer {
   private name: string;

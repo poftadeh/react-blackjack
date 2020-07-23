@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Hand from '../Hand';
 import HandControls from '../HandControls';
 import CombinedRootState from '../../types/CombinedRootState';
-import SerializedPlayer from '../../types/StoredPlayer';
+import SerializedPlayer from '../../types/SerializedPlayer';
 import { PlayerArea } from './style';
 
 interface Props {

@@ -10,7 +10,7 @@ import {
   BetButton,
   ControlPanel,
 } from './style';
-import SerializedPlayer from '../../types/StoredPlayer';
+import SerializedPlayer from '../../types/SerializedPlayer';
 import CombinedRootState from '../../types/CombinedRootState';
 
 interface Props {

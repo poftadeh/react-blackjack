@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
+interface HandControlWrapperProps {
+  hide: boolean;
+}
+
 export const HandControlWrapper = styled.div`
+  visibility: ${(props: HandControlWrapperProps) =>
+    props.hide ? 'hidden' : 'visible'};
   display: flex;
   justify-content: space-around;
 `;

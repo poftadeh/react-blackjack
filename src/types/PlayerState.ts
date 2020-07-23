@@ -1,4 +1,4 @@
-import SerializedPlayer from './StoredPlayer';
+import SerializedPlayer from './SerializedPlayer';
 
 export default interface PlayerState {
   activePlayer: SerializedPlayer | null;
