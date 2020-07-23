@@ -6,6 +6,7 @@ import {
 import Dealer from '../Dealer';
 import { PlayerStatus } from '../../types/PlayerStatus';
 import Card from '../Card';
+import StoredPlayer from '../../types/StoredPlayer';
 
 export default class Player extends Dealer {
   private name: string;
@@ -101,5 +102,20 @@ export default class Player extends Dealer {
    */
   public resetBetSize(): void {
     this.betSize = 0;
+  }
+
+  /**
+   * Returns the serialized form of the player for storage.
+   */
+  public serialize(): StoredPlayer {
+    return {
+      name: this.name,
+      hand: this.hand
+        .getCards()
+        .map((card) => ({ suit: card.getSuit(), rank: card.getRank() })),
+      status: this.status,
+      stack: this.stack.getChips(),
+      betSize: this.betSize,
+    };
   }
 }
