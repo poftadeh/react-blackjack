@@ -36,7 +36,7 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer }) => {
             ${betAmount} ({activePlayer?.name})
           </BetDisplay>
           <BetButton disabled={!betAmount} onClick={() => bet(betAmount)}>
-            Bet
+            Deal
           </BetButton>
         </ControlPanel>
         <div className="chips">

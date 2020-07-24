@@ -16,6 +16,6 @@ export const HandControlButton = styled.button`
   color: white;
   padding: 1rem 1.5rem;
   border-radius: 4px;
-  background-color: magenta;
+  background-color: #e67e22;
   text-transform: uppercase;
 `;
