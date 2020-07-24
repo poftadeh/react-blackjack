@@ -5,6 +5,6 @@ export default styled.div`
   justify-content: center;
 
   & > *:not(:first-child) {
-    margin-left: -3rem;
+    margin-left: -4rem;
   }
 `;

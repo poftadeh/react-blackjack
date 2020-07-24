@@ -63,8 +63,7 @@ export const stand = (): AppThunk => (dispatch) => {
 };
 
 export const double = (): AppThunk => (dispatch) => {
-  const doublingPlayer = game.getSerializedActivePlayer();
-  game.double();
+  const doublingPlayer = game.double();
   dispatch(update(doublingPlayer));
 };
 
