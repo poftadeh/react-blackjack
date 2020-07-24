@@ -45,9 +45,24 @@ export const Chip = styled.button`
   background-size: cover;
 `;
 
-export const BetDisplay = styled.h3`
-  color: white;
-  font-size: 2.5rem;
+export const StackImage = styled.div`
+  background-image: url(assets/images/stack.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+`;
+
+export const StackContainer = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px dashed #fff;
+  padding: 0.75rem;
+`;
+
+export const StackDisplay = styled.h3`
+  color: #fff;
+  font-size: 2.2rem;
   align-self: center;
   min-width: 3ch;
 `;

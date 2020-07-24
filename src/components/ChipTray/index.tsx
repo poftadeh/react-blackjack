@@ -4,11 +4,13 @@ import { bet, setTrayAmount } from '../../actions';
 import {
   Tray,
   Chip,
-  BetDisplay,
+  StackDisplay,
   Wrapper,
   ClearButton,
   BetButton,
   ControlPanel,
+  StackImage,
+  StackContainer,
 } from './style';
 import SerializedPlayer from '../../types/SerializedPlayer';
 import CombinedRootState from '../../types/CombinedRootState';
@@ -24,6 +26,7 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
   const [betAmount, setBetAmount] = useState<number>(0);
 
   const handleClick = (amount: number): void => {
+    if (activePlayer?.stack - betAmount - amount < 0) return;
     setBetAmount((previousAmount) => previousAmount + amount);
     setTrayAmount(betAmount + amount);
   };
@@ -35,9 +38,10 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
       <Tray>
         <ControlPanel>
           <ClearButton onClick={clearBet}>Clear</ClearButton>
-          <BetDisplay>
-            ${betAmount} ({activePlayer?.name})
-          </BetDisplay>
+          <StackContainer>
+            <StackImage />
+            <StackDisplay>${activePlayer?.stack - betAmount}</StackDisplay>
+          </StackContainer>
           <BetButton
             disabled={!betAmount}
             onClick={() => {
