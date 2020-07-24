@@ -44,23 +44,21 @@ export const update = (player: SerializedPlayer): AppThunk => (dispatch) => {
     player,
   });
   dispatch(setActivePlayer());
+  dispatch(updateDealer());
 };
 
 export const bet = (amount: number): AppThunk => (dispatch) => {
-  const bettingPlayer = game.getSerializedActivePlayer();
-  game.bet(amount);
+  const bettingPlayer = game.bet(amount);
   dispatch(update(bettingPlayer));
 };
 
 export const hit = (): AppThunk => (dispatch) => {
-  const hittingPlayer = game.getSerializedActivePlayer();
-  game.hit();
+  const hittingPlayer = game.hit();
   dispatch(update(hittingPlayer));
 };
 
 export const stand = (): AppThunk => (dispatch) => {
-  const standingPlayer = game.getSerializedActivePlayer();
-  game.stand();
+  const standingPlayer = game.stand();
   dispatch(update(standingPlayer));
 };
 
@@ -70,14 +68,17 @@ export const double = (): AppThunk => (dispatch) => {
   dispatch(update(doublingPlayer));
 };
 
-export const updateDealerHand = (): AppThunk => (dispatch) => {
+export const updateDealer = (): AppThunk => (dispatch) => {
+  const hand = game.getDealer().serializeHand();
+  const handValue = game.getDealer().getHandValue();
+
   dispatch({
     type: UPDATE_DEALER_HAND,
-    hand: game.getDealer().serializeHand(),
+    dealer: { hand, handValue },
   });
 };
 
 export const playDealerHand = (): AppThunk => (dispatch) => {
   game.playDealerHand();
-  dispatch(updateDealerHand());
+  dispatch(updateDealer());
 };

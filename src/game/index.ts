@@ -90,7 +90,7 @@ export default class Game {
    * Deals a card to an active player.
    * @param playerName string representing the player's name
    */
-  public hit(): void {
+  public hit(): SerializedPlayer {
     const player = this.activePlayer;
 
     if (player.getStatus() !== PlayerStatus.Active) {
@@ -103,13 +103,14 @@ export default class Game {
     if (player.isBust() || player.isHoldingBlackjack()) {
       this.nextActivePlayer();
     }
+    return player.serialize();
   }
 
   /**
    * Sets a player's hand status to stand.
    * @param playerName the player's name
    */
-  public stand(): void {
+  public stand(): SerializedPlayer {
     const player = this.activePlayer;
 
     if (player.getStatus() !== PlayerStatus.Active) {
@@ -118,13 +119,14 @@ export default class Game {
 
     player.stand();
     this.nextActivePlayer();
+    return player.serialize();
   }
 
   /**
    * Sets a player's hand status to stand.
    * @param playerName the player's name
    */
-  public double(): void {
+  public double(): SerializedPlayer {
     const player = this.activePlayer;
 
     if (player.getStatus() !== PlayerStatus.Active) {
@@ -138,6 +140,7 @@ export default class Game {
     const card = this.deck.drawCard();
     player.doubleDown(card);
     this.nextActivePlayer();
+    return player.serialize();
   }
 
   /**
@@ -171,9 +174,11 @@ export default class Game {
    * @param amount
    */
 
-  public bet(amount: number): void {
-    this.activePlayer.bet(amount);
+  public bet(amount: number): SerializedPlayer {
+    const player = this.activePlayer;
+    player.bet(amount);
     this.nextActivePlayer();
+    return player.serialize();
   }
 
   /**

@@ -13,7 +13,7 @@ interface Props {
   double: () => void;
 }
 
-const HandControls: React.FC<Props> = ({
+const PlayerHandControls: React.FC<Props> = ({
   activePlayer,
   hit,
   stand,
@@ -34,4 +34,6 @@ const mapStateToProps = (state: CombinedRootState) => ({
   activePlayer: state.player.activePlayer,
 });
 
-export default connect(mapStateToProps, { hit, stand, double })(HandControls);
+export default connect(mapStateToProps, { hit, stand, double })(
+  PlayerHandControls,
+);

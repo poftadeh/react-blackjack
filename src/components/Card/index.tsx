@@ -1,11 +1,9 @@
 import React from 'react';
 import { CardContainer, CardBase } from './style';
-import { Rank } from '../../types/Rank';
-import { Suit } from '../../types/Suit';
 
 interface Props {
-  rank: Rank;
-  suit: Suit;
+  rank: string;
+  suit: string;
 }
 
 const Card: React.FC<Props> = ({ rank, suit }) => {

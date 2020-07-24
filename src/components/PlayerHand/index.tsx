@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HandWrapper, HandContainer, HandScore } from './style';
 import Card from '../Card';
 import CombinedRootState from '../../types/CombinedRootState';
 import SerializedPlayer from '../../types/SerializedPlayer';
+import HandWrapper from './style';
+import HandContainer from '../common/HandContainer';
+import HandScore from '../common/HandScore';
 
 interface Props {
   activePlayer?: SerializedPlayer;
 }
 
-const Hand: React.FC<Props> = ({ activePlayer }) => {
+const PlayerHand: React.FC<Props> = ({ activePlayer }) => {
   if (!activePlayer?.hand.length) return null;
 
   return (
@@ -29,4 +31,4 @@ const mapStateToProps = (state: CombinedRootState) => ({
   activePlayer: state.player.activePlayer,
 });
 
-export default connect(mapStateToProps, null)(Hand);
+export default connect(mapStateToProps, null)(PlayerHand);

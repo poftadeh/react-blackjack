@@ -4,5 +4,5 @@ import { SerializedHand } from './SerializedHand';
 export default interface GameState {
   phase: GamePhase;
   isGameMenuVisible: boolean;
-  dealerHand: SerializedHand;
+  dealer: { hand: SerializedHand; handValue: number };
 }

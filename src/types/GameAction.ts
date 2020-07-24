@@ -16,13 +16,13 @@ export interface PlayerBetAction {
   amount: number;
 }
 
-export interface SetDealerHandAction {
+export interface UpdateDealerAction {
   type: string;
-  dealerHand: SerializedHand;
+  dealer: { hand: SerializedHand; handValue: number };
 }
 
 export type GameAction =
   | SetMenuAction
   | SetPhaseAction
   | PlayerBetAction
-  | SetDealerHandAction;
+  | UpdateDealerAction;

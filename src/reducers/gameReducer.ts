@@ -3,7 +3,7 @@ import {
   GameAction,
   SetPhaseAction,
   SetMenuAction,
-  SetDealerHandAction,
+  UpdateDealerAction,
 } from '../types/GameAction';
 import {
   SET_GAME_PHASE,
@@ -15,7 +15,7 @@ import GameState from '../types/GameState';
 const initialState: GameState = {
   phase: GamePhase.Menu,
   isGameMenuVisible: true,
-  dealerHand: [],
+  dealer: { hand: [], handValue: 0 },
 };
 
 export default (state = initialState, action: GameAction): GameState => {
@@ -30,7 +30,7 @@ export default (state = initialState, action: GameAction): GameState => {
     case UPDATE_DEALER_HAND:
       return {
         ...state,
-        dealerHand: (action as SetDealerHandAction).dealerHand,
+        dealer: (action as UpdateDealerAction).dealer,
       };
     default:
       return state;
