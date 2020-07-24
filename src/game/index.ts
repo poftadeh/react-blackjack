@@ -2,8 +2,9 @@ import Deck from './Deck';
 import Player from './Player';
 import Dealer from './Dealer';
 import { PlayerStatus } from '../types/PlayerStatus';
-import { GamePhase } from '../types/GamePhase';
+import GamePhase from '../types/GamePhase';
 import SerializedPlayer from '../types/SerializedPlayer';
+import HandOutcome from '../types/HandOutcome';
 
 export interface CreatedPlayer {
   name: string;
@@ -194,31 +195,46 @@ export default class Game {
     if (!this.dealer.isBust()) {
       this.dealer.stand();
     }
+
+    this.gamePhase = GamePhase.Results;
+    this.endRound();
   }
 
   /**
    * Handles the outcome at the end of the hand.
    */
   public endRound(): void {
-    this.playDealerHand();
     const dealerHandValue = this.dealer.getHandValue();
+    const dealerHasBlackjack = this.dealer.isHoldingBlackjack();
 
     this.players.forEach((player) => {
+      const playerHasBlackjack = player.isHoldingBlackjack();
       const playerHandValue = player.getHandValue();
 
+      if (
+        player.isBust() ||
+        (!this.dealer.isBust() && dealerHandValue > playerHandValue) ||
+        (dealerHasBlackjack && !playerHasBlackjack)
+      ) {
+        player.setHandOutcome(HandOutcome.Loser);
+        return;
+      }
+
       if (playerHandValue === dealerHandValue) {
+        player.setHandOutcome(HandOutcome.Push);
         player.handlePush();
       }
 
-      if (
-        player.getStatus() !== PlayerStatus.Bust &&
-        playerHandValue > dealerHandValue
-      ) {
+      if (this.dealer.isBust() || playerHandValue > dealerHandValue) {
+        player.setHandOutcome(HandOutcome.Winner);
         player.applyWinMultiplier();
       }
     });
   }
 
+  /**
+   * Serializes the current active player.
+   */
   public getSerializedActivePlayer(): SerializedPlayer {
     const activePlayer = this.players.find(
       (player) => player.getName() === this.activePlayer.getName(),
@@ -229,5 +245,12 @@ export default class Game {
     }
 
     return activePlayer.serialize();
+  }
+
+  /**
+   * Returns the current game phase.
+   */
+  public getGamePhase(): GamePhase {
+    return this.gamePhase;
   }
 }

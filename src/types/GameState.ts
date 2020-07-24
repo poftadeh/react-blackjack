@@ -1,4 +1,4 @@
-import { GamePhase } from './GamePhase';
+import GamePhase from './GamePhase';
 import { SerializedHand } from './SerializedHand';
 
 export default interface GameState {

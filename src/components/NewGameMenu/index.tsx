@@ -12,12 +12,7 @@ const NewGameMenu: React.FC<Props> = ({ startGame }) => {
   return (
     <MenuWrapper>
       <NewGameButton
-        onClick={() =>
-          startGame([
-            { name: 'foo', startingChips: 1000 },
-            { name: 'bar', startingChips: 2000 },
-          ])
-        }
+        onClick={() => startGame([{ name: 'foo', startingChips: 1000 }])}
       >
         New Game
       </NewGameButton>

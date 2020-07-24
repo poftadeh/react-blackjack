@@ -7,6 +7,7 @@ import Dealer from '../Dealer';
 import { PlayerStatus } from '../../types/PlayerStatus';
 import Card from '../Card';
 import SerializedPlayer from '../../types/SerializedPlayer';
+import HandOutcome from '../../types/HandOutcome';
 
 export default class Player extends Dealer {
   private name: string;
@@ -14,6 +15,8 @@ export default class Player extends Dealer {
   private stack: Stack;
 
   private betSize = 0;
+
+  private handOutcome = HandOutcome.Undetermined;
 
   constructor(name: string, startingChips: number) {
     super();
@@ -108,6 +111,31 @@ export default class Player extends Dealer {
   }
 
   /**
+   * Resets the player's hand, chips, and hand outcome.
+   */
+  public resetPlayer(): void {
+    super.drawNewHand();
+    this.resetBetSize();
+    this.handOutcome = HandOutcome.Undetermined;
+  }
+
+  /**
+   * Sets the outcome of the hand.
+   * @param outcome
+   */
+  public setHandOutcome(outcome: HandOutcome): void {
+    this.handOutcome = outcome;
+  }
+
+  /**
+   * Sets the outcome of the hand.
+   * @param outcome
+   */
+  public getHandOutcome(): HandOutcome {
+    return this.handOutcome;
+  }
+
+  /**
    * Returns the serialized form of the player for storage.
    */
   public serialize(): SerializedPlayer {
@@ -120,6 +148,7 @@ export default class Player extends Dealer {
       stack: this.getChipValue(),
       betSize: this.betSize,
       handValue: this.getHandValue(),
+      handOutcome: this.getHandOutcome(),
     };
   }
 }

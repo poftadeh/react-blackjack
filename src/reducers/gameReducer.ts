@@ -1,4 +1,4 @@
-import { GamePhase } from '../types/GamePhase';
+import GamePhase from '../types/GamePhase';
 import {
   GameAction,
   SetPhaseAction,

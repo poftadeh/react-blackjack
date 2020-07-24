@@ -1,4 +1,4 @@
-import { GamePhase } from '../types/GamePhase';
+import GamePhase from '../types/GamePhase';
 import {
   SET_GAME_PHASE,
   SET_GAME_MENU_VISIBILITY,
@@ -19,6 +19,7 @@ export const startGame = (players: CreatedPlayer[]): AppThunk => (dispatch) => {
   dispatch(setGamePhase(GamePhase.Betting));
   dispatch(setGameMenuVisibility(false));
   dispatch(setActivePlayer());
+  dispatch(updateDealer());
 };
 
 export const setGameMenuVisibility = (
@@ -45,6 +46,7 @@ export const update = (player: SerializedPlayer): AppThunk => (dispatch) => {
   });
   dispatch(setActivePlayer());
   dispatch(updateDealer());
+  dispatch(setGamePhase(game.getGamePhase()));
 };
 
 export const bet = (amount: number): AppThunk => (dispatch) => {
@@ -80,4 +82,8 @@ export const updateDealer = (): AppThunk => (dispatch) => {
 export const playDealerHand = (): AppThunk => (dispatch) => {
   game.playDealerHand();
   dispatch(updateDealer());
+  dispatch({
+    type: UPDATE_PLAYER,
+    player: game.getSerializedActivePlayer(),
+  });
 };

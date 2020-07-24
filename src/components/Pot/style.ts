@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface WrapperProps {
   hide: boolean;
@@ -20,8 +20,39 @@ export const BetLabel = styled.p`
   color: #fff;
   border-radius: 4px;
   font-size: 1.2rem;
-  padding: 0.5rem;
+  padding: 0.75rem 1rem;
   background-color: black;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+`;
+
+const scaleAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
+
+export const WinLabel = styled(BetLabel)`
+  color: #2ecc71;
+  animation: ${scaleAnimation} 1s ease-in-out;
+`;
+
+export const LoseLabel = styled(BetLabel)`
+  color: #e74c3c;
+  animation: ${scaleAnimation} 1s ease-in-out;
+`;
+
+export const PushLabel = styled(BetLabel)`
+  color: #ecf0f1;
+  animation: ${scaleAnimation} 1s ease-in-out;
 `;
 
 export const ChipImage = styled.div`
