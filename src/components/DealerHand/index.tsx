@@ -15,25 +15,29 @@ interface Props {
 }
 
 const Dealer: React.FC<Props> = ({ dealer, players }) => {
-  const isPlayerGroupActive = (): boolean | undefined => {
+  const checkForActivePlayer = (): boolean | undefined => {
     return players?.some((player) => player.status === PlayerStatus.Active);
   };
 
   if (!dealer?.hand.length) return null;
+
+  const isActivePlayer = checkForActivePlayer();
 
   return (
     <HandWrapper>
       <HandContainer>
         {dealer &&
           dealer.hand.map(({ suit, rank }, i) => {
-            if (i === 0 && isPlayerGroupActive()) {
+            if (i === 0 && isActivePlayer) {
               return <Card suit="B" rank="B" key={`${rank}${suit}`} />;
             }
 
             return <Card suit={suit} rank={rank} key={`${rank}${suit}`} />;
           })}
       </HandContainer>
-      <HandScore>{dealer?.handValue}</HandScore>
+      <HandScore className={isActivePlayer ? 'hidden' : ''}>
+        {dealer?.handValue}
+      </HandScore>
     </HandWrapper>
   );
 };

@@ -8,7 +8,7 @@ export const HandControlWrapper = styled.div`
   visibility: ${(props: HandControlWrapperProps) =>
     props.hide ? 'hidden' : 'visible'};
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 `;
 
 export const HandControlButton = styled.button`
