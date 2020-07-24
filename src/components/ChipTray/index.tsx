@@ -31,7 +31,10 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
     setTrayAmount(betAmount + amount);
   };
 
-  const clearBet = () => setBetAmount(0);
+  const clearBet = () => {
+    setBetAmount(0);
+    setTrayAmount(0);
+  };
 
   return (
     <Wrapper>
