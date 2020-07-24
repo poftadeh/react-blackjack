@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {
   Wrapper,
   LoseLabel,
@@ -9,18 +8,17 @@ import {
   ChipWrapper,
 } from './style';
 import SerializedPlayer from '../../types/SerializedPlayer';
-import CombinedRootState from '../../types/CombinedRootState';
 import GamePhase from '../../types/GamePhase';
 import { SerializedHand } from '../../types/SerializedHand';
 import HandOutcome from '../../types/HandOutcome';
 
 interface Props {
   gamePhase: GamePhase;
-  activePlayer: SerializedPlayer | null;
+  activePlayer: SerializedPlayer;
   dealer: { hand: SerializedHand; handValue: number };
 }
 
-const Pot = ({ activePlayer, gamePhase, dealer }: Props) => {
+const Pot: React.FC<Props> = ({ activePlayer, gamePhase, dealer }) => {
   let animation = '';
   const renderLabel = () => {
     if (
@@ -53,10 +51,4 @@ const Pot = ({ activePlayer, gamePhase, dealer }: Props) => {
   );
 };
 
-const mapStateToProps = (state: CombinedRootState) => ({
-  activePlayer: state.player.activePlayer,
-  gamePhase: state.game.phase,
-  dealer: state.game.dealer,
-});
-
-export default connect(mapStateToProps, null)(Pot);
+export default Pot;
