@@ -24,7 +24,6 @@ export const Chip = styled.button`
   border-radius: 50%;
   background-color: #c0392b;
   text-align: center;
-  font-weight: 700;
   cursor: pointer;
 `;
 
@@ -32,7 +31,6 @@ export const BetDisplay = styled.h3`
   color: white;
   font-size: 2.5rem;
   align-self: center;
-  font-weight: 700;
   min-width: 3ch;
 `;
 
@@ -41,7 +39,6 @@ const ControlButton = styled.button`
   padding: 1rem 2rem;
   border-radius: 4px;
   color: #fff;
-  font-weight: 700;
   margin-top: 1rem;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   background-color: #e67e22;

@@ -14,7 +14,7 @@ interface Props {
   players?: SerializedPlayer[];
 }
 
-const dealer: React.FC<Props> = ({ dealer, players }) => {
+const Dealer: React.FC<Props> = ({ dealer, players }) => {
   const isPlayerGroupActive = (): boolean | undefined => {
     return players?.some((player) => player.status === PlayerStatus.Active);
   };
@@ -43,4 +43,4 @@ const mapStateToProps = (state: CombinedRootState) => ({
   players: state.player.players,
 });
 
-export default connect(mapStateToProps, null)(dealer);
+export default connect(mapStateToProps, null)(Dealer);

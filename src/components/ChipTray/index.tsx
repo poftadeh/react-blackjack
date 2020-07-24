@@ -42,7 +42,6 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer }) => {
         <div className="chips">
           <Chip onClick={() => handleClick(1)}>1</Chip>
           <Chip onClick={() => handleClick(5)}>5</Chip>
-          <Chip onClick={() => handleClick(10)}>10</Chip>
           <Chip onClick={() => handleClick(25)}>25</Chip>
           <Chip onClick={() => handleClick(50)}>50</Chip>
           <Chip onClick={() => handleClick(100)}>100</Chip>

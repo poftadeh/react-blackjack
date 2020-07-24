@@ -6,6 +6,7 @@ import CombinedRootState from '../../types/CombinedRootState';
 import SerializedPlayer from '../../types/SerializedPlayer';
 import { PlayerArea } from './style';
 import DealerHand from '../DealerHand';
+import Pot from '../Pot';
 
 interface Props {
   activePlayer?: SerializedPlayer;
@@ -15,6 +16,7 @@ const Table: React.FC<Props> = ({ activePlayer }) => {
   return (
     <>
       <DealerHand />
+      <Pot />
       <PlayerArea>
         <PlayerHand />
         <PlayerHandControls />

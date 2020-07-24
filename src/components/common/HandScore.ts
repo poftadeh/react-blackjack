@@ -4,7 +4,7 @@ export default styled.span`
   display: inline-block;
   color: white;
   background-color: #2c3e50;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   border-radius: 6px;
   margin-top: 1rem;
