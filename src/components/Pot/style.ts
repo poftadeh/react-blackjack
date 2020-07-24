@@ -28,6 +28,7 @@ export const Wrapper = styled.div`
 export const ChipWrapper = styled.div`
   text-align: center;
   transition: all 4s;
+  z-index: 999;
 `;
 
 const scaleAnimation = keyframes`
