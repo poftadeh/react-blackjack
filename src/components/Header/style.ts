@@ -13,7 +13,13 @@ export const Title = styled.h1`
   letter-spacing: 1.5px;
 `;
 
+interface MenuButtonProps {
+  hide: boolean;
+}
+
 export const MenuButton = styled.button`
+  visibility: ${(props: MenuButtonProps) =>
+    props.hide ? 'hidden' : 'visible'};
   border: none;
   width: 3rem;
   height: 3rem;
