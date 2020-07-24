@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import 'fontsource-lato';
 import styled, { createGlobalStyle } from 'styled-components';
 import NewGameMenu from './components/NewGameMenu';
 import ChipTray from './components/ChipTray';
@@ -16,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   
   html {
     font-size: 62.5%;
+    font-family: "Lato";
     text-rendering: optimizeLegibility;
   }
 

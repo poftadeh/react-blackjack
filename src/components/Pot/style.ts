@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
+interface WrapperProps {
+  hide: boolean;
+}
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  visibility: ${(props: WrapperProps) => (props.hide ? 'hidden' : 'visible')};
 
   img {
     width: 4rem;

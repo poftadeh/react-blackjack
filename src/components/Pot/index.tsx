@@ -10,7 +10,7 @@ interface Props {
 
 const Pot: React.FC<Props> = ({ activePlayer }) => {
   return (
-    <Wrapper>
+    <Wrapper hide={!activePlayer?.betSize}>
       <BetLabel>Bet: ${activePlayer?.betSize}</BetLabel>
       <img src="assets/images/chip-red.svg" alt="Betting Chip" />
     </Wrapper>

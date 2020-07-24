@@ -14,17 +14,35 @@ export const Tray = styled.div`
     display: flex;
     justify-content: space-around;
   }
+
+  .chip-red {
+    background-image: url(assets/images/chip-red.svg);
+  }
+  .chip-blue {
+    background-image: url(assets/images/chip-blue.svg);
+  }
+  .chip-green {
+    background-image: url(assets/images/chip-green.svg);
+  }
+  .chip-purple {
+    background-image: url(assets/images/chip-purple.svg);
+  }
+  .chip-black {
+    background-image: url(assets/images/chip-black.svg);
+  }
 `;
 
 export const Chip = styled.button`
   border: none;
   color: #fff;
-  width: 4rem;
-  height: 4rem;
+  width: 5.5rem;
+  height: 5.5rem;
   border-radius: 50%;
-  background-color: #c0392b;
+  background-color: transparent;
+  font-weight: 500;
   text-align: center;
   cursor: pointer;
+  background-size: cover;
 `;
 
 export const BetDisplay = styled.h3`
