@@ -43,7 +43,7 @@ const Pot: React.FC<Props> = ({
       animation = 'give-chip';
       return <WinLabel>Win: ${activePlayer?.betSize}</WinLabel>;
     }
-    animation = 'take-chip';
+    animation = 'give-chip';
     return <PushLabel>Push</PushLabel>;
   };
 
