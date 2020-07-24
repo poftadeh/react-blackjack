@@ -117,6 +117,7 @@ export default class Player extends Dealer {
     super.drawNewHand();
     this.resetBetSize();
     this.handOutcome = HandOutcome.Undetermined;
+    this.status = PlayerStatus.Active;
   }
 
   /**

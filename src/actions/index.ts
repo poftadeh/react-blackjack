@@ -47,6 +47,10 @@ export const update = (player: SerializedPlayer): AppThunk => (dispatch) => {
   dispatch(setActivePlayer());
   dispatch(updateDealer());
   dispatch(setGamePhase(game.getGamePhase()));
+
+  if (game.getGamePhase() === GamePhase.Results) {
+    setTimeout(() => dispatch(startNewRound()), 3000);
+  }
 };
 
 export const bet = (amount: number): AppThunk => (dispatch) => {
@@ -90,5 +94,5 @@ export const playDealerHand = (): AppThunk => (dispatch) => {
 
 export const startNewRound = (): AppThunk => (dispatch) => {
   game.startNewRound();
-  update(game.getSerializedActivePlayer());
+  dispatch(update(game.getSerializedActivePlayer()));
 };
