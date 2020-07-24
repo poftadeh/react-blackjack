@@ -253,4 +253,16 @@ export default class Game {
   public getGamePhase(): GamePhase {
     return this.gamePhase;
   }
+
+  /**
+   * Resets card/bet state and starts a new round.
+   */
+  public startNewRound(): void {
+    this.dealer.drawNewHand();
+    this.players.forEach((player) => {
+      player.resetPlayer();
+    });
+
+    this.gamePhase = GamePhase.Betting;
+  }
 }

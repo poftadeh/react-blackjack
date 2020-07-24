@@ -87,3 +87,8 @@ export const playDealerHand = (): AppThunk => (dispatch) => {
     player: game.getSerializedActivePlayer(),
   });
 };
+
+export const startNewRound = (): AppThunk => (dispatch) => {
+  game.startNewRound();
+  update(game.getSerializedActivePlayer());
+};
