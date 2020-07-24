@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import 'fontsource-lato';
 import styled, { createGlobalStyle } from 'styled-components';
-import NewGameMenu from './components/NewGameMenu';
+import GameMenu from './components/GameMenu';
 import ChipTray from './components/ChipTray';
 import CombinedRootState from './types/CombinedRootState';
 import Header from './components/Header';
@@ -46,7 +46,7 @@ const App: React.FC<Props> = ({ isGameMenuVisible }) => {
       <GlobalStyle />
       <Header />
       {isGameMenuVisible ? (
-        <NewGameMenu />
+        <GameMenu />
       ) : (
         <>
           <Table />
