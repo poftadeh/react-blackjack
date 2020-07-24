@@ -74,7 +74,7 @@ const ControlButton = styled.button`
   color: #fff;
   margin-top: 1rem;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  background-color: #e67e22;
+  background-color: #27ae60;
   text-transform: uppercase;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;

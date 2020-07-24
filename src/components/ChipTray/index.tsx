@@ -15,14 +15,21 @@ import {
 import SerializedPlayer from '../../types/SerializedPlayer';
 import CombinedRootState from '../../types/CombinedRootState';
 import { GameAction } from '../../types/GameAction';
+import GamePhase from '../../types/GamePhase';
 
 interface Props {
   bet: (amount: number) => void;
   setTrayAmount: (trayAmount: number) => GameAction;
   activePlayer?: SerializedPlayer | null;
+  gamePhase: GamePhase;
 }
 
-const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
+const ChipTray: React.FC<Props> = ({
+  bet,
+  activePlayer,
+  setTrayAmount,
+  gamePhase,
+}) => {
   const [betAmount, setBetAmount] = useState<number>(0);
 
   const handleClick = (amount: number): void => {
@@ -36,17 +43,21 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
     setTrayAmount(0);
   };
 
+  const isBettingPhase = gamePhase === GamePhase.Betting;
+
   return (
     <Wrapper>
       <Tray>
         <ControlPanel>
-          <ClearButton onClick={clearBet}>Clear</ClearButton>
+          <ClearButton onClick={clearBet} disabled={!isBettingPhase}>
+            Clear
+          </ClearButton>
           <StackContainer>
             <StackImage />
             <StackDisplay>${activePlayer?.stack - betAmount}</StackDisplay>
           </StackContainer>
           <BetButton
-            disabled={!betAmount}
+            disabled={!betAmount || !isBettingPhase}
             onClick={() => {
               bet(betAmount);
               setBetAmount(0);
@@ -56,19 +67,39 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
           </BetButton>
         </ControlPanel>
         <div className="chips">
-          <Chip className="chip-red" onClick={() => handleClick(1)}>
+          <Chip
+            className="chip-red"
+            onClick={() => handleClick(1)}
+            disabled={!isBettingPhase}
+          >
             1
           </Chip>
-          <Chip className="chip-green" onClick={() => handleClick(5)}>
+          <Chip
+            className="chip-green"
+            onClick={() => handleClick(5)}
+            disabled={!isBettingPhase}
+          >
             5
           </Chip>
-          <Chip className="chip-purple" onClick={() => handleClick(25)}>
+          <Chip
+            className="chip-purple"
+            onClick={() => handleClick(25)}
+            disabled={!isBettingPhase}
+          >
             25
           </Chip>
-          <Chip className="chip-blue" onClick={() => handleClick(50)}>
+          <Chip
+            className="chip-blue"
+            onClick={() => handleClick(50)}
+            disabled={!isBettingPhase}
+          >
             50
           </Chip>
-          <Chip className="chip-black" onClick={() => handleClick(100)}>
+          <Chip
+            className="chip-black"
+            onClick={() => handleClick(100)}
+            disabled={!isBettingPhase}
+          >
             100
           </Chip>
         </div>
@@ -79,6 +110,7 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
 
 const mapStateToProps = (state: CombinedRootState) => ({
   activePlayer: state.player.activePlayer,
+  gamePhase: state.game.phase,
 });
 
 export default connect(mapStateToProps, {

@@ -19,7 +19,7 @@ const Header: React.FC<Props> = ({
 }) => {
   return (
     <StyledHeader>
-      <Title>React Blackjack</Title>
+      <Title>React Blackjack ♠️</Title>
       <MenuButton
         hide={!activePlayer}
         onClick={() => setGameMenuVisibility(!isMenuVisible)}
