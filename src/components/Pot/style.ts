@@ -14,6 +14,21 @@ export const Wrapper = styled.div`
     width: 4rem;
     height: 4rem;
   }
+
+  .take-chip {
+    position: fixed;
+    transform: translateY(-150vh);
+  }
+
+  .give-chip {
+    position: fixed;
+    transform: translateY(150vh);
+  }
+`;
+
+export const ChipWrapper = styled.div`
+  text-align: center;
+  transition: all 4s;
 `;
 
 export const BetLabel = styled.p`
