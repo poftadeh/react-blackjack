@@ -21,8 +21,14 @@ export interface UpdateDealerAction {
   dealer: { hand: SerializedHand; handValue: number };
 }
 
+export interface setTrayAmount {
+  type: string;
+  trayAmount: number;
+}
+
 export type GameAction =
   | SetMenuAction
   | SetPhaseAction
   | PlayerBetAction
-  | UpdateDealerAction;
+  | UpdateDealerAction
+  | setTrayAmount;

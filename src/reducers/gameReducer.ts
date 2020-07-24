@@ -4,17 +4,20 @@ import {
   SetPhaseAction,
   SetMenuAction,
   UpdateDealerAction,
+  setTrayAmount,
 } from '../types/GameAction';
 import {
   SET_GAME_PHASE,
   SET_GAME_MENU_VISIBILITY,
   UPDATE_DEALER_HAND,
+  SET_TRAY_AMOUNT,
 } from '../actions/types';
 import GameState from '../types/GameState';
 
 const initialState: GameState = {
   phase: GamePhase.Menu,
   isGameMenuVisible: true,
+  trayAmount: 0,
   dealer: { hand: [], handValue: 0 },
 };
 
@@ -31,6 +34,11 @@ export default (state = initialState, action: GameAction): GameState => {
       return {
         ...state,
         dealer: (action as UpdateDealerAction).dealer,
+      };
+    case SET_TRAY_AMOUNT:
+      return {
+        ...state,
+        trayAmount: (action as setTrayAmount).trayAmount,
       };
     default:
       return state;

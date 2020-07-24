@@ -5,6 +5,7 @@ import {
   UPDATE_PLAYER,
   SET_ACTIVE_PLAYER,
   UPDATE_DEALER_HAND,
+  SET_TRAY_AMOUNT,
 } from './types';
 import Game, { CreatedPlayer } from '../game';
 import { AppThunk } from '../types/AppThunk';
@@ -92,7 +93,13 @@ export const playDealerHand = (): AppThunk => (dispatch) => {
   });
 };
 
+export const setTrayAmount = (trayAmount: number): GameAction => ({
+  type: SET_TRAY_AMOUNT,
+  trayAmount,
+});
+
 export const startNewRound = (): AppThunk => (dispatch) => {
   game.startNewRound();
+  dispatch(setTrayAmount(0));
   dispatch(update(game.getSerializedActivePlayer()));
 };

@@ -16,16 +16,22 @@ interface Props {
   gamePhase: GamePhase;
   activePlayer: SerializedPlayer;
   dealer: { hand: SerializedHand; handValue: number };
+  trayAmount: number;
 }
 
-const Pot: React.FC<Props> = ({ activePlayer, gamePhase, dealer }) => {
+const Pot: React.FC<Props> = ({
+  activePlayer,
+  gamePhase,
+  dealer,
+  trayAmount,
+}) => {
   let animation = '';
   const renderLabel = () => {
     if (
       !activePlayer ||
       activePlayer.handOutcome === HandOutcome.Undetermined
     ) {
-      return <BetLabel>Bet: ${activePlayer?.betSize}</BetLabel>;
+      return <BetLabel>Bet: ${activePlayer?.betSize || trayAmount}</BetLabel>;
     }
 
     if (activePlayer.handOutcome === HandOutcome.Loser) {
@@ -42,7 +48,7 @@ const Pot: React.FC<Props> = ({ activePlayer, gamePhase, dealer }) => {
   };
 
   return (
-    <Wrapper hide={!activePlayer?.betSize}>
+    <Wrapper>
       {renderLabel()}
       <ChipWrapper className={animation}>
         <img src="assets/images/chip-red.svg" alt="Betting Chip" />

@@ -14,13 +14,26 @@ interface Props {
   gamePhase: GamePhase;
   activePlayer: SerializedPlayer | null;
   dealer: { hand: SerializedHand; handValue: number };
+  trayAmount: number;
 }
 
-const Table: React.FC<Props> = ({ activePlayer, gamePhase, dealer }) => {
+const Table: React.FC<Props> = ({
+  activePlayer,
+  gamePhase,
+  dealer,
+  trayAmount,
+}) => {
   return (
     <>
       <DealerHand />
-      <Pot activePlayer={activePlayer} gamePhase={gamePhase} dealer={dealer} />
+      {trayAmount && (
+        <Pot
+          activePlayer={activePlayer}
+          gamePhase={gamePhase}
+          dealer={dealer}
+          trayAmount={trayAmount}
+        />
+      )}
       <PlayerArea>
         <PlayerHand />
         <PlayerHandControls />
@@ -33,6 +46,7 @@ const mapStateToProps = (state: CombinedRootState) => ({
   activePlayer: state.player.activePlayer,
   gamePhase: state.game.phase,
   dealer: state.game.dealer,
+  trayAmount: state.game.trayAmount,
 });
 
 export default connect(mapStateToProps, null)(Table);

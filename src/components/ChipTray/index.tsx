@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { bet } from '../../actions';
+import { bet, setTrayAmount } from '../../actions';
 import {
   Tray,
   Chip,
@@ -12,17 +12,20 @@ import {
 } from './style';
 import SerializedPlayer from '../../types/SerializedPlayer';
 import CombinedRootState from '../../types/CombinedRootState';
+import { GameAction } from '../../types/GameAction';
 
 interface Props {
   bet: (amount: number) => void;
+  setTrayAmount: (trayAmount: number) => GameAction;
   activePlayer?: SerializedPlayer | null;
 }
 
-const ChipTray: React.FC<Props> = ({ bet, activePlayer }) => {
+const ChipTray: React.FC<Props> = ({ bet, activePlayer, setTrayAmount }) => {
   const [betAmount, setBetAmount] = useState<number>(0);
 
   const handleClick = (amount: number): void => {
     setBetAmount((previousAmount) => previousAmount + amount);
+    setTrayAmount(betAmount + amount);
   };
 
   const clearBet = () => setBetAmount(0);
@@ -35,7 +38,13 @@ const ChipTray: React.FC<Props> = ({ bet, activePlayer }) => {
           <BetDisplay>
             ${betAmount} ({activePlayer?.name})
           </BetDisplay>
-          <BetButton disabled={!betAmount} onClick={() => bet(betAmount)}>
+          <BetButton
+            disabled={!betAmount}
+            onClick={() => {
+              bet(betAmount);
+              setBetAmount(0);
+            }}
+          >
             Deal
           </BetButton>
         </ControlPanel>
@@ -65,4 +74,7 @@ const mapStateToProps = (state: CombinedRootState) => ({
   activePlayer: state.player.activePlayer,
 });
 
-export default connect(mapStateToProps, { bet })(ChipTray);
+export default connect(mapStateToProps, {
+  bet,
+  setTrayAmount,
+})(ChipTray);
