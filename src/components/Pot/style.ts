@@ -36,7 +36,7 @@ const scaleAnimation = keyframes`
   }
 
   50% {
-    transform: scale(2);
+    transform: scale(1.5);
   }
 
   100% {
@@ -52,7 +52,7 @@ export const BetLabel = styled.p`
   background-color: black;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  animation: ${scaleAnimation} 1s ease-in-out;
+  animation: ${scaleAnimation} 0.75s ease-in-out;
 `;
 
 export const WinLabel = styled(BetLabel)`
