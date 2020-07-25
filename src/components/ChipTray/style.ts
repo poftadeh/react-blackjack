@@ -58,12 +58,12 @@ export const StackImage = styled.div`
 export const StackContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 1px dashed #fff;
   padding: 0.1rem;
 `;
 
 export const StackDisplay = styled.h3`
   color: #fff;
+  margin-left: 0.4rem;
   font-size: 1.5rem;
   align-self: center;
   min-width: 3ch;
