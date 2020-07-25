@@ -51,6 +51,12 @@ export const Chip = styled.button`
   text-align: center;
   cursor: pointer;
   background-size: cover;
+  transition: all 0.5s;
+  backface-visibility: hidden;
+
+  &:hover {
+    transform: scale(1.5);
+  }
 `;
 
 export const StackImage = styled.div`
