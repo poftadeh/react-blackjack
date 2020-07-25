@@ -8,8 +8,8 @@ export const MenuWrapper = styled.div`
   padding: 3rem;
   background-image: linear-gradient(
       to bottom,
-      rgba(55, 55, 55, 0.8),
-      rgba(33, 33, 33, 0.8)
+      rgba(33, 33, 33, 0.3),
+      rgba(33, 33, 33, 0.45)
     ),
     url(assets/images/card-bg.jpg);
   background-repeat: no-repeat;
@@ -19,6 +19,7 @@ export const MenuWrapper = styled.div`
 `;
 
 export const MenuButton = styled.button`
+  text-shadow: 0 1px 0 #000;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;

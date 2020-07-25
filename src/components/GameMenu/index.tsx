@@ -29,9 +29,6 @@ const GameMenu: React.FC<Props> = ({
   isMenuVisible,
   activePlayer,
 }) => {
-  loadGame();
-  setGameMenuVisibility(!isMenuVisible);
-
   return (
     <MenuWrapper>
       <MenuButton

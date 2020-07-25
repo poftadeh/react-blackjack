@@ -86,4 +86,8 @@ export const ControlPanel = styled.div`
   display: flex;
   justify-content: center;
   margin: 1rem 0 0.4rem 0;
+
+  @media only screen and (min-width: 405px) {
+    margin: 1rem;
+  }
 `;

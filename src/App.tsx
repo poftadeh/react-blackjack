@@ -23,7 +23,14 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: 1.7;
-    background-color: #2C2827;
+    background-color: #000;
+  }
+
+  
+  @media only screen and (min-width: 405px) {
+    html {
+      font-size: 80%;
+    }
   }
 `;
 
@@ -34,6 +41,11 @@ const AppWrapper = styled.div`
   height: 100vh;
   margin: 0 auto;
   background-color: #186737;
+
+  @media only screen and (min-width: 405px) {
+    max-width: 45rem;
+    margin: 0 auto;
+  }
 `;
 
 interface Props {
