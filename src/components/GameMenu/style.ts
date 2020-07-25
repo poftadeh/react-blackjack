@@ -5,6 +5,7 @@ export const MenuWrapper = styled.div`
   height: 100%;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 3rem;
   background-image: linear-gradient(
       to bottom,
@@ -27,7 +28,7 @@ export const MenuButton = styled.button`
   border: 3px solid transparent;
   font-size: 2.5rem;
   font-weight: 500;
-  padding: 0.5rem;
+  padding: 1.5rem;
   margin-bottom: 8rem;
   transition: all 1s;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
