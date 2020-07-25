@@ -19,7 +19,12 @@ const Header: React.FC<Props> = ({
 }) => {
   return (
     <StyledHeader>
-      <Title>React Blackjack ♠️</Title>
+      <Title>
+        React Blackjack{' '}
+        <span role="img" aria-label="Spade Emoji" className="emoji">
+          ♠️
+        </span>
+      </Title>
       <MenuButton
         hide={!activePlayer}
         onClick={() => setGameMenuVisibility(!isMenuVisible)}

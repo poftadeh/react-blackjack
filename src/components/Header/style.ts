@@ -5,12 +5,16 @@ export const StyledHeader = styled.header`
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
+
+  .emoji {
+    font-size: 2rem;
+  }
 `;
 
 export const Title = styled.h1`
   color: #fff;
   letter-spacing: 1.5px;
-  margin: 0.2rem 1rem;
+  margin-left: 1rem;
   font-size: 1.5rem;
 `;
 
