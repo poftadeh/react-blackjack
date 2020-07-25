@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/react-blackjack/static/js/main.b04b0786.chunk.js",
-    "main.js.map": "/react-blackjack/static/js/main.b04b0786.chunk.js.map",
+    "main.js": "/react-blackjack/static/js/main.dc0f325b.chunk.js",
+    "main.js.map": "/react-blackjack/static/js/main.dc0f325b.chunk.js.map",
     "runtime-main.js": "/react-blackjack/static/js/runtime-main.fc658315.js",
     "runtime-main.js.map": "/react-blackjack/static/js/runtime-main.fc658315.js.map",
     "static/css/2.b260949c.chunk.css": "/react-blackjack/static/css/2.b260949c.chunk.css",
-    "static/js/2.2d3ab23c.chunk.js": "/react-blackjack/static/js/2.2d3ab23c.chunk.js",
-    "static/js/2.2d3ab23c.chunk.js.map": "/react-blackjack/static/js/2.2d3ab23c.chunk.js.map",
+    "static/js/2.e7cb4bda.chunk.js": "/react-blackjack/static/js/2.e7cb4bda.chunk.js",
+    "static/js/2.e7cb4bda.chunk.js.map": "/react-blackjack/static/js/2.e7cb4bda.chunk.js.map",
     "index.html": "/react-blackjack/index.html",
-    "precache-manifest.cdaa16e59dcf4b18819df8cc6a4fc0b9.js": "/react-blackjack/precache-manifest.cdaa16e59dcf4b18819df8cc6a4fc0b9.js",
+    "precache-manifest.d8413664b9870365118827d7d2bf2c3c.js": "/react-blackjack/precache-manifest.d8413664b9870365118827d7d2bf2c3c.js",
     "service-worker.js": "/react-blackjack/service-worker.js",
     "static/css/2.b260949c.chunk.css.map": "/react-blackjack/static/css/2.b260949c.chunk.css.map",
-    "static/js/2.2d3ab23c.chunk.js.LICENSE.txt": "/react-blackjack/static/js/2.2d3ab23c.chunk.js.LICENSE.txt",
+    "static/js/2.e7cb4bda.chunk.js.LICENSE.txt": "/react-blackjack/static/js/2.e7cb4bda.chunk.js.LICENSE.txt",
     "static/media/2C.svg": "/react-blackjack/static/media/2C.0f86ea3a.svg",
     "static/media/2D.svg": "/react-blackjack/static/media/2D.0afc1021.svg",
     "static/media/2H.svg": "/react-blackjack/static/media/2H.d652a695.svg",
@@ -71,6 +71,7 @@
     "static/media/chip-green.svg": "/react-blackjack/static/media/chip-green.337dccf7.svg",
     "static/media/chip-purple.svg": "/react-blackjack/static/media/chip-purple.2beaa4c8.svg",
     "static/media/chip-red.svg": "/react-blackjack/static/media/chip-red.e333320c.svg",
+    "static/media/gameover.jpg": "/react-blackjack/static/media/gameover.96a50d0b.jpg",
     "static/media/index.css": "/react-blackjack/static/media/lato-latin-900-normal.e7d596b2.ttf",
     "static/media/menu.svg": "/react-blackjack/static/media/menu.9bd7f9a9.svg",
     "static/media/stack.svg": "/react-blackjack/static/media/stack.367a3d1e.svg"
@@ -78,7 +79,7 @@
   "entrypoints": [
     "static/js/runtime-main.fc658315.js",
     "static/css/2.b260949c.chunk.css",
-    "static/js/2.2d3ab23c.chunk.js",
-    "static/js/main.b04b0786.chunk.js"
+    "static/js/2.e7cb4bda.chunk.js",
+    "static/js/main.dc0f325b.chunk.js"
   ]
 }
