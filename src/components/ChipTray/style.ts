@@ -56,7 +56,7 @@ export const Chip = styled.button`
 
   @media (hover: hover) {
     &:hover {
-      transform: scale(1.5);
+      transform: scale(1.2);
     }
   }
 `;
