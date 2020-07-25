@@ -6,6 +6,9 @@ import GamePhase from '../types/GamePhase';
 import SerializedPlayer from '../types/SerializedPlayer';
 import HandOutcome from '../types/HandOutcome';
 import Hand from './Hand';
+import { updateDealer } from '../actions';
+import store from '../store';
+import { UPDATE_DEALER_HAND } from '../actions/types';
 
 export interface CreatedPlayer {
   name: string;
@@ -13,6 +16,10 @@ export interface CreatedPlayer {
 }
 
 const STARTING_HAND_SIZE = 2;
+
+const wait = (duration: number) => {
+  return new Promise((resolve) => setTimeout(resolve, duration));
+};
 
 export default class Game {
   private deck: Deck;
@@ -186,11 +193,22 @@ export default class Game {
   /**
    * Plays out the dealer's hand. Stands on soft 17.
    */
-  public playDealerHand(): void {
+  public async playDealerHand(): Promise<void> {
     this.gamePhase = GamePhase.DealerHand;
 
-    while (this.dealer.getHandValue() < 17) {
+    if (this.dealer.getHandValue() < 17) {
+      await wait(1000);
       this.dealer.addCard(this.deck.drawCard());
+
+      const hand = this.getDealer().serializeHand();
+      const handValue = this.getDealer().getHandValue();
+      store.dispatch({
+        type: UPDATE_DEALER_HAND,
+        dealer: { hand, handValue },
+      });
+
+      this.playDealerHand();
+      return;
     }
 
     if (!this.dealer.isBust()) {

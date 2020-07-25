@@ -46,7 +46,9 @@ export const update = (player: SerializedPlayer): AppThunk => (dispatch) => {
     player,
   });
   dispatch(setActivePlayer());
-  dispatch(updateDealer());
+  if (game.getGamePhase() !== GamePhase.DealerHand) {
+    dispatch(updateDealer());
+  }
   dispatch(setGamePhase(game.getGamePhase()));
 
   if (game.getGamePhase() === GamePhase.Results) {
