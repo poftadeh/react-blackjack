@@ -5,14 +5,16 @@ export const Wrapper = styled.div`
 `;
 
 export const Tray = styled.div`
-  padding: 0 0 2rem 0;
+  padding: 0 0 1.5rem 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #2c3e50;
 
   .chips {
     display: flex;
     justify-content: space-around;
+    width: 30rem;
   }
 
   .chip-red {
@@ -35,8 +37,8 @@ export const Tray = styled.div`
 export const Chip = styled.button`
   border: none;
   color: #fff;
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   background-color: transparent;
   font-weight: 500;
@@ -57,39 +59,31 @@ export const StackContainer = styled.div`
   display: flex;
   align-items: center;
   border: 1px dashed #fff;
-  padding: 0.75rem;
+  padding: 0.1rem;
 `;
 
 export const StackDisplay = styled.h3`
   color: #fff;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   align-self: center;
   min-width: 3ch;
 `;
 
-const ControlButton = styled.button`
+export const ControlButton = styled.button`
   border: none;
-  padding: 1rem 2rem;
+  padding: 0 1.5rem;
   border-radius: 4px;
   color: #fff;
-  margin-top: 1rem;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   background-color: #27ae60;
   text-transform: uppercase;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
-`;
-
-export const BetButton = styled(ControlButton)`
-  font-size: 1.5rem;
-`;
-
-export const ClearButton = styled(ControlButton)`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin: 0 1.5rem;
 `;
 
 export const ControlPanel = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 1rem 0 2rem 0;
+  justify-content: center;
+  margin: 1rem 0 0.4rem 0;
 `;

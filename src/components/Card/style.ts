@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const CardContainer = styled.div`
-  width: 8rem;
+  width: 6.5rem;
 `;
 
 const flipAnimation = keyframes`

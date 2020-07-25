@@ -31,7 +31,6 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 36rem;
   height: 100vh;
   margin: 0 auto;
   background-color: #186737;

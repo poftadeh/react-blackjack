@@ -29,10 +29,13 @@ const GameMenu: React.FC<Props> = ({
   isMenuVisible,
   activePlayer,
 }) => {
+  loadGame();
+  setGameMenuVisibility(!isMenuVisible);
+
   return (
     <MenuWrapper>
       <MenuButton
-        onClick={() => startGame([{ name: 'foo', startingChips: 1000 }])}
+        onClick={() => startGame([{ name: 'foo', startingChips: 5000 }])}
       >
         New Game
       </MenuButton>

@@ -6,8 +6,7 @@ import {
   Chip,
   StackDisplay,
   Wrapper,
-  ClearButton,
-  BetButton,
+  ControlButton,
   ControlPanel,
   StackImage,
   StackContainer,
@@ -49,17 +48,17 @@ const ChipTray: React.FC<Props> = ({
     <Wrapper>
       <Tray>
         <ControlPanel>
-          <ClearButton
+          <ControlButton
             onClick={clearBet}
             disabled={!betAmount || !isBettingPhase}
           >
             Clear
-          </ClearButton>
+          </ControlButton>
           <StackContainer>
             <StackImage />
             <StackDisplay>${activePlayer?.stack - betAmount}</StackDisplay>
           </StackContainer>
-          <BetButton
+          <ControlButton
             disabled={!betAmount || !isBettingPhase}
             onClick={() => {
               bet(betAmount);
@@ -67,7 +66,7 @@ const ChipTray: React.FC<Props> = ({
             }}
           >
             Deal
-          </BetButton>
+          </ControlButton>
         </ControlPanel>
         <div className="chips">
           <Chip

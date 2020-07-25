@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  padding: 0.75rem 1rem;
   background-color: #2c3e50;
   text-transform: uppercase;
   display: flex;
@@ -11,6 +10,8 @@ export const StyledHeader = styled.header`
 export const Title = styled.h1`
   color: #fff;
   letter-spacing: 1.5px;
+  margin: 0.2rem 1rem;
+  font-size: 1.5rem;
 `;
 
 interface MenuButtonProps {
@@ -23,6 +24,7 @@ export const MenuButton = styled.button`
   border: none;
   width: 3rem;
   height: 3rem;
+  margin-right: 0.5rem;
   cursor: pointer;
   background-color: inherit;
   background-size: cover;

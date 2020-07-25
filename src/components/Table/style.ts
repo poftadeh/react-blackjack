@@ -12,12 +12,9 @@ export const Wrapper = styled.div`
 `;
 
 export const PlayerArea = styled.div`
-  height: 25rem;
-  & > :first-child {
-    margin-bottom: 1.5rem;
-  }
+  height: 20rem;
 `;
 
 export const PotContainer = styled.div`
-  height: 10rem;
+  height: 9rem;
 `;
