@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import RedChip from '../../images/chip-red.svg';
+import BlueChip from '../../images/chip-blue.svg';
+import GreenChip from '../../images/chip-green.svg';
+import PurpleChip from '../../images/chip-purple.svg';
+import BlackChip from '../../images/chip-black.svg';
+import Stack from '../../images/stack.svg';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -18,19 +24,19 @@ export const Tray = styled.div`
   }
 
   .chip-red {
-    background-image: url(assets/images/chip-red.svg);
+    background-image: url(${RedChip});
   }
   .chip-blue {
-    background-image: url(assets/images/chip-blue.svg);
+    background-image: url(${BlueChip});
   }
   .chip-green {
-    background-image: url(assets/images/chip-green.svg);
+    background-image: url(${GreenChip});
   }
   .chip-purple {
-    background-image: url(assets/images/chip-purple.svg);
+    background-image: url(${PurpleChip});
   }
   .chip-black {
-    background-image: url(assets/images/chip-black.svg);
+    background-image: url(${BlackChip});
   }
 `;
 
@@ -48,7 +54,7 @@ export const Chip = styled.button`
 `;
 
 export const StackImage = styled.div`
-  background-image: url(assets/images/stack.svg);
+  background-image: url(${Stack});
   background-repeat: no-repeat;
   background-size: cover;
   width: 2rem;

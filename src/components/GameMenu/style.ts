@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import CardBg from '../../images/card-bg.jpg';
 
 export const MenuWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ export const MenuWrapper = styled.div`
       rgba(33, 33, 33, 0.3),
       rgba(33, 33, 33, 0.45)
     ),
-    url(assets/images/card-bg.jpg);
+    url(${CardBg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -11,6 +11,7 @@ import SerializedPlayer from '../../types/SerializedPlayer';
 import GamePhase from '../../types/GamePhase';
 import { SerializedHand } from '../../types/SerializedHand';
 import HandOutcome from '../../types/HandOutcome';
+import RedChip from '../../images/chip-red.svg';
 
 interface Props {
   gamePhase: GamePhase;
@@ -51,7 +52,7 @@ const Pot: React.FC<Props> = ({
     <Wrapper>
       {renderLabel()}
       <ChipWrapper className={animation}>
-        <img src="assets/images/chip-red.svg" alt="Betting Chip" />
+        <img src={RedChip} alt="Betting Chip" />
       </ChipWrapper>
     </Wrapper>
   );

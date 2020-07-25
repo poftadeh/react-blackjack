@@ -63,7 +63,3 @@ export const LoseLabel = styled(BetLabel)`
 export const PushLabel = styled(BetLabel)`
   color: #ecf0f1;
 `;
-
-export const ChipImage = styled.div`
-  background-image: url(assets/images/chip-red.svg);
-`;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import MenuIcon from '../../images/menu.svg';
 
 export const StyledHeader = styled.header`
   background-color: #2c3e50;
@@ -32,6 +33,6 @@ export const MenuButton = styled.button`
   cursor: pointer;
   background-color: inherit;
   background-size: cover;
-  background-image: url(assets/images/menu.svg);
+  background-image: url(${MenuIcon});
   background-repeat: no-repeat;
 `;
