@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
   background-position: center;
   background-size: cover;
   height: 100%;
+  cursor: pointer;
 `;
 
 export const Message = styled.h1`
