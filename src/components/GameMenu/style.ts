@@ -10,8 +10,8 @@ export const MenuWrapper = styled.div`
   padding: 3rem;
   background-image: linear-gradient(
       to bottom,
-      rgba(33, 33, 33, 0.3),
-      rgba(33, 33, 33, 0.45)
+      rgba(33, 33, 33, 0.55),
+      rgba(33, 33, 33, 0.55)
     ),
     url(${CardBg});
   background-repeat: no-repeat;
