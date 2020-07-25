@@ -10,8 +10,8 @@ export const MenuWrapper = styled.div`
   padding: 3rem;
   background-image: linear-gradient(
       to bottom,
-      rgba(33, 33, 33, 0.55),
-      rgba(33, 33, 33, 0.55)
+      rgba(33, 33, 33, 0.75),
+      rgba(33, 33, 33, 0.75)
     ),
     url(${CardBg});
   background-repeat: no-repeat;
@@ -27,6 +27,7 @@ export const MenuButton = styled.button`
   letter-spacing: 2px;
   background-color: transparent;
   border: 3px solid transparent;
+  outline: none;
   font-size: 2.5rem;
   font-weight: 500;
   padding: 1.5rem;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { MenuWrapper, MenuButton } from './style';
 import {
@@ -29,31 +29,47 @@ const GameMenu: React.FC<Props> = ({
   isMenuVisible,
   activePlayer,
 }) => {
+  const [isNewGameSelected, setIsNewGameSelected] = useState(false);
+
+  const newGame = (startingChips) => {
+    startGame([{ name: 'PlayerOne', startingChips }]);
+  };
+
   return (
     <MenuWrapper>
-      <MenuButton
-        onClick={() => startGame([{ name: 'foo', startingChips: 5000 }])}
-      >
-        New Game
-      </MenuButton>
-      <MenuButton
-        disabled={!activePlayer}
-        onClick={() => {
-          saveGame();
-          setGameMenuVisibility(!isMenuVisible);
-        }}
-      >
-        Save Game
-      </MenuButton>
-      <MenuButton
-        disabled={!localStorage.getItem('game')}
-        onClick={() => {
-          loadGame();
-          setGameMenuVisibility(!isMenuVisible);
-        }}
-      >
-        Load Game
-      </MenuButton>
+      {!isNewGameSelected ? (
+        <>
+          <MenuButton onClick={() => setIsNewGameSelected(true)}>
+            New Game
+          </MenuButton>
+          <MenuButton
+            disabled={!activePlayer}
+            onClick={() => {
+              saveGame();
+              setGameMenuVisibility(!isMenuVisible);
+            }}
+          >
+            Save Game
+          </MenuButton>
+          <MenuButton
+            disabled={!localStorage.getItem('game')}
+            onClick={() => {
+              loadGame();
+              setGameMenuVisibility(!isMenuVisible);
+            }}
+          >
+            Load Game
+          </MenuButton>
+        </>
+      ) : (
+        <>
+          <MenuButton onClick={() => newGame(10000)}>
+            Novice ($10000)
+          </MenuButton>
+          <MenuButton onClick={() => newGame(5000)}>Normal ($5000)</MenuButton>
+          <MenuButton onClick={() => newGame(1000)}>Expert ($1000)</MenuButton>
+        </>
+      )}
     </MenuWrapper>
   );
 };
