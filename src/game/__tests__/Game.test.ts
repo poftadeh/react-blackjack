@@ -94,7 +94,7 @@ describe('Game', () => {
       new Card('10', 'Spades'),
       new Card('10', 'Hearts'),
       new Card('9', 'Hearts'),
-      new Card('2', 'Clubs'),
+      new Card('King', 'Clubs'),
       new Card('3', 'Diamonds'),
     ];
 

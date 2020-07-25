@@ -1,5 +1,13 @@
 import Card from '../Card';
+import { Rank } from '../../types/Rank';
+import { Suit } from '../../types/Suit';
 
+interface StoredHand {
+  cards: { suit: string; rank: string }[];
+  isBlackJack: boolean;
+  isBust: boolean;
+  value: number;
+}
 export default class Hand {
   private cards: Card[] = [];
 
@@ -15,6 +23,26 @@ export default class Hand {
    */
   public getCards(): Card[] {
     return this.cards;
+  }
+
+  public static createHandFromStorageData({
+    cards,
+    isBlackJack,
+    isBust,
+    value,
+  }: StoredHand): Hand {
+    const formattedCards = cards.map(
+      (card: { suit: string; rank: string }) =>
+        new Card(card.rank as Rank, card.suit as Suit),
+    );
+
+    const hand = new Hand();
+    hand.cards = formattedCards;
+    hand.isBlackJack = isBlackJack;
+    hand.isBust = isBust;
+    hand.value = value;
+
+    return hand;
   }
 
   /**

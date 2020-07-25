@@ -5,6 +5,7 @@ import { PlayerStatus } from '../types/PlayerStatus';
 import GamePhase from '../types/GamePhase';
 import SerializedPlayer from '../types/SerializedPlayer';
 import HandOutcome from '../types/HandOutcome';
+import Hand from './Hand';
 
 export interface CreatedPlayer {
   name: string;
@@ -264,5 +265,50 @@ export default class Game {
     });
 
     this.gamePhase = GamePhase.Betting;
+  }
+
+  public saveGame(): void {
+    localStorage.setItem('game', JSON.stringify(this));
+  }
+
+  public loadGame(): void {
+    const storedGame = localStorage.getItem('game');
+
+    if (!storedGame) {
+      throw new Error('Could not find game data to load');
+    }
+
+    const parsedGame = JSON.parse(storedGame);
+
+    this.players = [];
+    this.deck = new Deck();
+    parsedGame.players.forEach((player) => {
+      const playerHand: Hand = Hand.createHandFromStorageData(player.hand);
+      this.players = [
+        ...this.players,
+        new Player(
+          player.name,
+          player.stack.chips,
+          player.betSize,
+          player.handOutcome,
+          playerHand,
+          player.status,
+        ),
+      ];
+    });
+    this.dealer = new Dealer(
+      Hand.createHandFromStorageData(parsedGame.dealer.hand),
+      parsedGame.dealer.status,
+    );
+
+    const activePlayer = this.players.find(
+      (player) => player.getName() === parsedGame.activePlayer.name,
+    );
+
+    if (!activePlayer)
+      throw new Error('Could not find active player in stored data');
+
+    this.activePlayer = activePlayer;
+    this.gamePhase = parsedGame.gamePhase;
   }
 }

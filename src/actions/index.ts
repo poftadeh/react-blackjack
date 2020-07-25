@@ -103,3 +103,20 @@ export const startNewRound = (): AppThunk => (dispatch) => {
   dispatch(setTrayAmount(0));
   dispatch(update(game.getSerializedActivePlayer()));
 };
+
+export const saveGame = (): AppThunk => (dispatch) => {
+  if (!game) {
+    throw new Error('There is no game instance to save the game state.');
+  }
+
+  game.saveGame();
+};
+
+export const loadGame = (): AppThunk => (dispatch) => {
+  if (!game) {
+    game = new Game([{ name: 'foo', startingChips: 1000 }]);
+  }
+
+  game.loadGame();
+  dispatch(update(game.getSerializedActivePlayer()));
+};

@@ -15,7 +15,6 @@ export const MenuWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background: (33, 33, 33, 0.3);
   transition: all 1s;
 `;
 
@@ -27,12 +26,14 @@ export const MenuButton = styled.button`
   border: 3px solid transparent;
   font-size: 2.5rem;
   font-weight: 500;
-  transition: all 0.5s;
   padding: 0.5rem;
   margin-bottom: 8rem;
+  transition: all 1s;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 
   &:hover {
-    border: 3px solid #fff;
+    border: ${(props) =>
+      props.disabled ? '3px solid transparent' : '3px solid #fff'};
   }
 `;
 

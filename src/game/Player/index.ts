@@ -8,20 +8,30 @@ import { PlayerStatus } from '../../types/PlayerStatus';
 import Card from '../Card';
 import SerializedPlayer from '../../types/SerializedPlayer';
 import HandOutcome from '../../types/HandOutcome';
+import Hand from '../Hand';
 
 export default class Player extends Dealer {
   private name: string;
 
   private stack: Stack;
 
-  private betSize = 0;
+  private betSize: number;
 
-  private handOutcome = HandOutcome.Undetermined;
+  private handOutcome: HandOutcome;
 
-  constructor(name: string, startingChips: number) {
-    super();
+  constructor(
+    name: string,
+    startingChips: number,
+    betSize?: number,
+    handOutcome?: HandOutcome,
+    hand?: Hand,
+    status?: PlayerStatus,
+  ) {
+    super(hand, status);
     this.name = name;
     this.stack = new Stack(startingChips);
+    this.betSize = betSize ?? 0;
+    this.handOutcome = handOutcome ?? HandOutcome.Undetermined;
   }
 
   /**

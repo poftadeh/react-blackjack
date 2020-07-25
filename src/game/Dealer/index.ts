@@ -8,9 +8,9 @@ export default class Dealer {
 
   protected status: PlayerStatus;
 
-  constructor() {
-    this.hand = new Hand();
-    this.status = PlayerStatus.Active;
+  constructor(hand?: Hand, status?: PlayerStatus) {
+    this.hand = hand ?? new Hand();
+    this.status = status ?? PlayerStatus.Active;
   }
 
   /**
