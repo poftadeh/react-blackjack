@@ -23,6 +23,8 @@ const Dealer: React.FC<Props> = ({ dealer, players }) => {
 
   const isActivePlayer = checkForActivePlayer();
 
+  const isBust = dealer.handValue > 21;
+
   return (
     <HandWrapper>
       <HandContainer>
@@ -35,8 +37,8 @@ const Dealer: React.FC<Props> = ({ dealer, players }) => {
             return <Card suit={suit} rank={rank} key={`${rank}${suit}`} />;
           })}
       </HandContainer>
-      <HandScore className={isActivePlayer ? 'hidden' : ''}>
-        {dealer?.handValue}
+      <HandScore isBust={isBust} className={isActivePlayer ? 'hidden' : ''}>
+        {isBust ? 'BUST' : dealer.handValue}
       </HandScore>
     </HandWrapper>
   );
