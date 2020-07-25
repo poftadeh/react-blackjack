@@ -6,9 +6,14 @@ import GamePhase from '../types/GamePhase';
 import SerializedPlayer from '../types/SerializedPlayer';
 import HandOutcome from '../types/HandOutcome';
 import Hand from './Hand';
-import { updateDealer } from '../actions';
 import store from '../store';
-import { UPDATE_DEALER_HAND } from '../actions/types';
+import {
+  UPDATE_DEALER_HAND,
+  UPDATE_PLAYER,
+  SET_ACTIVE_PLAYER,
+  SET_GAME_PHASE,
+  SET_TRAY_AMOUNT,
+} from '../actions/types';
 
 export interface CreatedPlayer {
   name: string;
@@ -190,23 +195,40 @@ export default class Game {
     return player.serialize();
   }
 
+  private dispatchUpdates(): void {
+    store.dispatch({
+      type: UPDATE_PLAYER,
+      player: this.activePlayer,
+    });
+
+    store.dispatch({
+      type: SET_ACTIVE_PLAYER,
+      activePlayer: this.getSerializedActivePlayer(),
+    });
+
+    store.dispatch({
+      type: SET_GAME_PHASE,
+      phase: this.gamePhase,
+    });
+
+    const hand = this.getDealer().serializeHand();
+    const handValue = this.getDealer().getHandValue();
+    store.dispatch({
+      type: UPDATE_DEALER_HAND,
+      dealer: { hand, handValue },
+    });
+  }
+
   /**
    * Plays out the dealer's hand. Stands on soft 17.
    */
   public async playDealerHand(): Promise<void> {
     this.gamePhase = GamePhase.DealerHand;
+    await wait(this.dealer.getHand().getCards().length === 2 ? 600 : 1000);
 
     if (this.dealer.getHandValue() < 17) {
-      await wait(1000);
       this.dealer.addCard(this.deck.drawCard());
-
-      const hand = this.getDealer().serializeHand();
-      const handValue = this.getDealer().getHandValue();
-      store.dispatch({
-        type: UPDATE_DEALER_HAND,
-        dealer: { hand, handValue },
-      });
-
+      this.dispatchUpdates();
       this.playDealerHand();
       return;
     }
@@ -217,6 +239,17 @@ export default class Game {
 
     this.gamePhase = GamePhase.Results;
     this.endRound();
+
+    this.dispatchUpdates();
+
+    await wait(3000);
+    this.startNewRound();
+    store.dispatch({
+      type: SET_TRAY_AMOUNT,
+      trayAmount: 0,
+    });
+
+    this.dispatchUpdates();
   }
 
   /**

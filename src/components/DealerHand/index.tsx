@@ -8,13 +8,15 @@ import HandWrapper from './style';
 import { SerializedHand } from '../../types/SerializedHand';
 import SerializedPlayer from '../../types/SerializedPlayer';
 import { PlayerStatus } from '../../types/PlayerStatus';
+import GamePhase from '../../types/GamePhase';
 
 interface Props {
   dealer?: { hand: SerializedHand; handValue: number };
   players?: SerializedPlayer[];
+  gamePhase: GamePhase;
 }
 
-const Dealer: React.FC<Props> = ({ dealer, players }) => {
+const Dealer: React.FC<Props> = ({ dealer, players, gamePhase }) => {
   const checkForActivePlayer = (): boolean | undefined => {
     return players?.some((player) => player.status === PlayerStatus.Active);
   };
@@ -28,7 +30,11 @@ const Dealer: React.FC<Props> = ({ dealer, players }) => {
       <HandContainer className={dealer.hand.length === 0 ? 'hidden' : ''}>
         {dealer &&
           dealer.hand.map(({ suit, rank }, i) => {
-            if (i === 0 && isActivePlayer) {
+            if (
+              i === 0 &&
+              gamePhase !== GamePhase.DealerHand &&
+              gamePhase !== GamePhase.Results
+            ) {
               return <Card suit="B" rank="B" key={`${rank}${suit}`} />;
             }
 
@@ -47,6 +53,7 @@ const Dealer: React.FC<Props> = ({ dealer, players }) => {
 const mapStateToProps = (state: CombinedRootState) => ({
   dealer: state.game.dealer,
   players: state.player.players,
+  gamePhase: state.game.phase,
 });
 
 export default connect(mapStateToProps, null)(Dealer);
