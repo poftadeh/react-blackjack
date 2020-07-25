@@ -43,7 +43,7 @@ const AppWrapper = styled.div`
   background-color: #186737;
 
   @media only screen and (min-width: 405px) {
-    max-width: 45rem;
+    max-width: 40rem;
     margin: 0 auto;
   }
 `;
