@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import Card from '../Card';
 import CombinedRootState from '../../types/CombinedRootState';
 import HandContainer from '../common/HandContainer';
-import HandScore from '../common/HandScore';
+import HandScore from '../HandScore';
 import HandWrapper from './style';
 import { SerializedHand } from '../../types/SerializedHand';
 import SerializedPlayer from '../../types/SerializedPlayer';
-import { PlayerStatus } from '../../types/PlayerStatus';
 import GamePhase from '../../types/GamePhase';
 
 interface Props {
@@ -17,8 +16,6 @@ interface Props {
 }
 
 const Dealer: React.FC<Props> = ({ dealer, players, gamePhase }) => {
-  const isBust = dealer.handValue > 21;
-
   return (
     <HandWrapper>
       <HandContainer className={dealer.hand.length === 0 ? 'hidden' : ''}>
@@ -36,9 +33,7 @@ const Dealer: React.FC<Props> = ({ dealer, players, gamePhase }) => {
           })}
       </HandContainer>
       {dealer.hand.length > 0 && (
-        <HandScore isBust={isBust}>
-          {isBust ? 'BUST' : dealer.handValue}
-        </HandScore>
+        <HandScore value={dealer.handValue} length={dealer.hand.length} />
       )}
     </HandWrapper>
   );

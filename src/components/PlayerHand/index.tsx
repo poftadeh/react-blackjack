@@ -5,15 +5,13 @@ import CombinedRootState from '../../types/CombinedRootState';
 import SerializedPlayer from '../../types/SerializedPlayer';
 import HandWrapper from './style';
 import HandContainer from '../common/HandContainer';
-import HandScore from '../common/HandScore';
+import HandScore from '../HandScore';
 
 interface Props {
   activePlayer?: SerializedPlayer;
 }
 
 const PlayerHand: React.FC<Props> = ({ activePlayer }) => {
-  const isBust = activePlayer.handValue > 21;
-
   return (
     <HandWrapper>
       <HandContainer>
@@ -23,9 +21,10 @@ const PlayerHand: React.FC<Props> = ({ activePlayer }) => {
           ))}
       </HandContainer>
       {activePlayer?.hand.length > 0 && (
-        <HandScore isBust={isBust}>
-          {isBust ? 'BUST' : activePlayer?.handValue}
-        </HandScore>
+        <HandScore
+          value={activePlayer.handValue}
+          length={activePlayer.hand.length}
+        />
       )}
     </HandWrapper>
   );

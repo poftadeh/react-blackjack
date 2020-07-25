@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 interface Props {
-  isBust: boolean;
+  color: string;
 }
 
 export default styled.div`
   color: #fff;
-  background-color: ${(props: Props) => (props.isBust ? '#c0392b' : '#2c3e50')};
+  background-color: ${(props: Props) => props.color};
   font-size: 1.2rem;
   text-align: center;
   border-radius: 6px;
