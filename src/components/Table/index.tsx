@@ -28,12 +28,7 @@ const Table: React.FC<Props> = ({
       <DealerHand />
       <PotContainer>
         {(!!trayAmount || !!activePlayer?.betSize) && (
-          <Pot
-            activePlayer={activePlayer}
-            gamePhase={gamePhase}
-            dealer={dealer}
-            trayAmount={trayAmount}
-          />
+          <Pot activePlayer={activePlayer} trayAmount={trayAmount} />
         )}
       </PotContainer>
       <PlayerArea>

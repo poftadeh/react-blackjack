@@ -14,18 +14,11 @@ import HandOutcome from '../../types/HandOutcome';
 import RedChip from '../../images/chip-red.svg';
 
 interface Props {
-  gamePhase: GamePhase;
   activePlayer: SerializedPlayer;
-  dealer: { hand: SerializedHand; handValue: number };
   trayAmount: number;
 }
 
-const Pot: React.FC<Props> = ({
-  activePlayer,
-  gamePhase,
-  dealer,
-  trayAmount,
-}) => {
+const Pot: React.FC<Props> = ({ activePlayer, trayAmount }) => {
   let animation = '';
   const renderLabel = () => {
     if (

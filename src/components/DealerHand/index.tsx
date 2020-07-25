@@ -17,12 +17,6 @@ interface Props {
 }
 
 const Dealer: React.FC<Props> = ({ dealer, players, gamePhase }) => {
-  const checkForActivePlayer = (): boolean | undefined => {
-    return players?.some((player) => player.status === PlayerStatus.Active);
-  };
-
-  const isActivePlayer = checkForActivePlayer();
-
   const isBust = dealer.handValue > 21;
 
   return (
