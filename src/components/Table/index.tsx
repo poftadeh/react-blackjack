@@ -27,7 +27,7 @@ const Table: React.FC<Props> = ({
     <Wrapper>
       <DealerHand />
       <PotContainer>
-        {(!!trayAmount || activePlayer?.betSize) && (
+        {(!!trayAmount || !!activePlayer?.betSize) && (
           <Pot
             activePlayer={activePlayer}
             gamePhase={gamePhase}
