@@ -54,8 +54,10 @@ export const Chip = styled.button`
   transition: all 0.5s;
   backface-visibility: hidden;
 
-  &:hover {
-    transform: scale(1.5);
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.5);
+    }
   }
 `;
 

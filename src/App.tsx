@@ -7,6 +7,9 @@ import ChipTray from './components/ChipTray';
 import CombinedRootState from './types/CombinedRootState';
 import Header from './components/Header';
 import Table from './components/Table';
+import GameOverScreen from './components/GameOverScreen';
+import SerializedPlayer from './types/SerializedPlayer';
+import HandOutcome from './types/HandOutcome';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -50,9 +53,22 @@ const AppWrapper = styled.div`
 
 interface Props {
   isGameMenuVisible: boolean;
+  activePlayer: SerializedPlayer | null;
 }
 
-const App: React.FC<Props> = ({ isGameMenuVisible }) => {
+const App: React.FC<Props> = ({ isGameMenuVisible, activePlayer }) => {
+  const isPlayerBankrupt =
+    activePlayer?.stack < 1 && activePlayer.betSize === 0;
+
+  if (isPlayerBankrupt && !isGameMenuVisible) {
+    return (
+      <AppWrapper>
+        <GlobalStyle />
+        <GameOverScreen />
+      </AppWrapper>
+    );
+  }
+
   return (
     <AppWrapper>
       <GlobalStyle />
@@ -71,6 +87,7 @@ const App: React.FC<Props> = ({ isGameMenuVisible }) => {
 
 const mapStateToProps = (state: CombinedRootState) => ({
   isGameMenuVisible: state.game.isGameMenuVisible,
+  activePlayer: state.player.activePlayer,
 });
 
 export default connect(mapStateToProps)(App);
