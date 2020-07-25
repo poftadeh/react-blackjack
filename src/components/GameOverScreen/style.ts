@@ -22,6 +22,6 @@ export const Message = styled.h1`
   text-transform: uppercase;
   color: #fff;
   letter-spacing: 2px;
-  font-size: 3rem;
+  font-size: 4rem;
   text-shadow: 0 1px 0 #000;
 `;
