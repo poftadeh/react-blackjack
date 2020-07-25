@@ -12,9 +12,8 @@ interface Props {
 }
 
 const PlayerHand: React.FC<Props> = ({ activePlayer }) => {
-  if (!activePlayer?.hand.length) return null;
-
   const isBust = activePlayer.handValue > 21;
+
   return (
     <HandWrapper>
       <HandContainer>
@@ -23,9 +22,11 @@ const PlayerHand: React.FC<Props> = ({ activePlayer }) => {
             <Card suit={suit} rank={rank} key={`${rank}${suit}`} />
           ))}
       </HandContainer>
-      <HandScore isBust={isBust}>
-        {isBust ? 'BUST' : activePlayer?.handValue}
-      </HandScore>
+      {activePlayer?.hand.length > 0 && (
+        <HandScore isBust={isBust}>
+          {isBust ? 'BUST' : activePlayer?.handValue}
+        </HandScore>
+      )}
     </HandWrapper>
   );
 };

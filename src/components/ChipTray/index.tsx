@@ -49,7 +49,10 @@ const ChipTray: React.FC<Props> = ({
     <Wrapper>
       <Tray>
         <ControlPanel>
-          <ClearButton onClick={clearBet} disabled={!isBettingPhase}>
+          <ClearButton
+            onClick={clearBet}
+            disabled={!betAmount || !isBettingPhase}
+          >
             Clear
           </ClearButton>
           <StackContainer>

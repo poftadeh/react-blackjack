@@ -4,7 +4,7 @@ import PlayerHand from '../PlayerHand';
 import PlayerHandControls from '../PlayerHandControls';
 import CombinedRootState from '../../types/CombinedRootState';
 import SerializedPlayer from '../../types/SerializedPlayer';
-import { PlayerArea } from './style';
+import { PlayerArea, Wrapper, PotContainer } from './style';
 import DealerHand from '../DealerHand';
 import Pot from '../Pot';
 import GamePhase from '../../types/GamePhase';
@@ -24,21 +24,23 @@ const Table: React.FC<Props> = ({
   trayAmount,
 }) => {
   return (
-    <>
+    <Wrapper>
       <DealerHand />
-      {trayAmount && (
-        <Pot
-          activePlayer={activePlayer}
-          gamePhase={gamePhase}
-          dealer={dealer}
-          trayAmount={trayAmount}
-        />
-      )}
+      <PotContainer>
+        {trayAmount && (
+          <Pot
+            activePlayer={activePlayer}
+            gamePhase={gamePhase}
+            dealer={dealer}
+            trayAmount={trayAmount}
+          />
+        )}
+      </PotContainer>
       <PlayerArea>
         <PlayerHand />
         <PlayerHandControls />
       </PlayerArea>
-    </>
+    </Wrapper>
   );
 };
 

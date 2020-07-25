@@ -19,13 +19,18 @@ const PlayerHandControls: React.FC<Props> = ({
   stand,
   double,
 }) => {
-  if (!activePlayer?.hand.length) return null;
+  const isPlayerActive = activePlayer.status === PlayerStatus.Active;
+  const isPlayerHoldingCards = activePlayer?.hand.length > 0;
 
   return (
-    <HandControlWrapper hide={activePlayer.status !== PlayerStatus.Active}>
-      <HandControlButton onClick={hit}>Hit</HandControlButton>
-      <HandControlButton onClick={stand}>Stand</HandControlButton>
-      {activePlayer.hand.length === 2 && (
+    <HandControlWrapper>
+      {isPlayerActive && isPlayerHoldingCards && (
+        <>
+          <HandControlButton onClick={hit}>Hit</HandControlButton>
+          <HandControlButton onClick={stand}>Stand</HandControlButton>
+        </>
+      )}
+      {activePlayer.hand.length === 2 && isPlayerActive && (
         <HandControlButton
           disabled={activePlayer.stack - activePlayer.betSize < 0}
           onClick={double}

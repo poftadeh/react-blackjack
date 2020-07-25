@@ -1,9 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-interface WrapperProps {
-  hide: boolean;
-}
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

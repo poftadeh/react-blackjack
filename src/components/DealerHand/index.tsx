@@ -19,15 +19,13 @@ const Dealer: React.FC<Props> = ({ dealer, players }) => {
     return players?.some((player) => player.status === PlayerStatus.Active);
   };
 
-  if (!dealer?.hand.length) return null;
-
   const isActivePlayer = checkForActivePlayer();
 
   const isBust = dealer.handValue > 21;
 
   return (
     <HandWrapper>
-      <HandContainer>
+      <HandContainer className={dealer.hand.length === 0 ? 'hidden' : ''}>
         {dealer &&
           dealer.hand.map(({ suit, rank }, i) => {
             if (i === 0 && isActivePlayer) {
@@ -37,9 +35,11 @@ const Dealer: React.FC<Props> = ({ dealer, players }) => {
             return <Card suit={suit} rank={rank} key={`${rank}${suit}`} />;
           })}
       </HandContainer>
-      <HandScore isBust={isBust} className={isActivePlayer ? 'hidden' : ''}>
-        {isBust ? 'BUST' : dealer.handValue}
-      </HandScore>
+      {dealer.hand.length > 0 && (
+        <HandScore isBust={isBust}>
+          {isBust ? 'BUST' : dealer.handValue}
+        </HandScore>
+      )}
     </HandWrapper>
   );
 };
