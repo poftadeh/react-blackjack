@@ -6,10 +6,8 @@ export const StyledHeader = styled.header`
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
-
-  .emoji {
-    font-size: 2rem;
-  }
+  align-items: center;
+  padding: 0.3rem;
 `;
 
 export const Title = styled.h1`
@@ -28,11 +26,11 @@ export const MenuButton = styled.button`
     props.hide ? 'hidden' : 'visible'};
   border: none;
   width: 3rem;
-  height: 3rem;
-  margin-right: 0.5rem;
+  height: 100%;
   cursor: pointer;
   background-color: inherit;
   background-size: cover;
   background-image: url(${MenuIcon});
   background-repeat: no-repeat;
+  background-position: center;
 `;
