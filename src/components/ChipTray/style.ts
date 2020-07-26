@@ -43,11 +43,12 @@ export const Tray = styled.div`
 export const Chip = styled.button`
   border: none;
   color: #fff;
-  width: 5rem;
-  height: 5rem;
+  width: 6.2rem;
+  height: 6.2rem;
   border-radius: 50%;
   background-color: transparent;
   font-weight: 500;
+  font-size: 1.6rem;
   text-align: center;
   cursor: pointer;
   background-size: cover;
