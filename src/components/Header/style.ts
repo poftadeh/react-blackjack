@@ -21,10 +21,9 @@ interface MenuButtonProps {
   hide: boolean;
 }
 
-export const MenuButton = styled.button`
+export const MenuButton = styled.div`
   visibility: ${(props: MenuButtonProps) =>
     props.hide ? 'hidden' : 'visible'};
-  border: none;
   width: 3rem;
   height: 100%;
   cursor: pointer;
