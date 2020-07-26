@@ -54,6 +54,7 @@ export const Chip = styled.button`
   background-size: cover;
   transition: all 0.5s;
   backface-visibility: hidden;
+  touch-action: manipulation;
 
   @media (hover: hover) {
     &:hover {
