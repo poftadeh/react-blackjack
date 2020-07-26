@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6c313fcfd7c3bbe017cc13123726705e",
+    "revision": "e0e1faa67960bcae4dbb60edc9a546d1",
     "url": "/react-blackjack/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-blackjack/static/js/2.e7cb4bda.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "29c9aa0ca2f9fd69d255",
-    "url": "/react-blackjack/static/js/main.48f7f6d4.chunk.js"
+    "revision": "9b7be4da9a5e08e5d888",
+    "url": "/react-blackjack/static/js/main.a6617b7a.chunk.js"
   },
   {
     "revision": "bbafe3250b1054da7fba",
