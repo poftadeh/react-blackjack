@@ -55,6 +55,7 @@ export const Chip = styled.button`
   transition: all 0.5s;
   backface-visibility: hidden;
   touch-action: manipulation;
+  user-select: none;
 
   &:hover {
     transform: scale(1.1);
