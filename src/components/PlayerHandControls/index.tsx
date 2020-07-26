@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { HandControlButton, HandControlWrapper } from './style';
 import CombinedRootState from '../../types/CombinedRootState';
@@ -21,6 +21,16 @@ const PlayerHandControls: React.FC<Props> = ({
 }) => {
   const isPlayerActive = activePlayer.status === PlayerStatus.Active;
   const isPlayerHoldingCards = activePlayer?.hand.length > 0;
+
+  useEffect(() => {
+    if (
+      isPlayerActive &&
+      activePlayer.handValue === 21 &&
+      activePlayer.hand.length === 2
+    ) {
+      stand();
+    }
+  });
 
   return (
     <HandControlWrapper>
