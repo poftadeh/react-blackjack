@@ -17,13 +17,15 @@ export const Title = styled.h1`
   font-size: 1.5rem;
 `;
 
-export const MenuButton = styled.div`
+export const MenuButton = styled.button`
   width: 3rem;
   height: 100%;
   cursor: pointer;
+  border: none;
   background-color: inherit;
   background-size: cover;
   background-image: url(${MenuIcon});
   background-repeat: no-repeat;
   background-position: center;
+  appearance: none;
 `;
