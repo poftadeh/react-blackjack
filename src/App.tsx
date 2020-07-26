@@ -9,7 +9,6 @@ import Header from './components/Header';
 import Table from './components/Table';
 import GameOverScreen from './components/GameOverScreen';
 import SerializedPlayer from './types/SerializedPlayer';
-import HandOutcome from './types/HandOutcome';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {

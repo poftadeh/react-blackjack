@@ -8,8 +8,6 @@ import {
   ChipWrapper,
 } from './style';
 import SerializedPlayer from '../../types/SerializedPlayer';
-import GamePhase from '../../types/GamePhase';
-import { SerializedHand } from '../../types/SerializedHand';
 import HandOutcome from '../../types/HandOutcome';
 import RedChip from '../../images/chip-red.svg';
 
