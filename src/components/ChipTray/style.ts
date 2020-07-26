@@ -56,10 +56,8 @@ export const Chip = styled.button`
   backface-visibility: hidden;
   touch-action: manipulation;
 
-  @media (hover: hover) {
-    &:hover {
-      transform: scale(1.2);
-    }
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 

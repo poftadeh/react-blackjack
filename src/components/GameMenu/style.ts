@@ -34,11 +34,9 @@ export const MenuButton = styled.button`
   transition: all 0.5s;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 
-  @media (hover: hover) {
-    &:hover {
-      border: ${(props) =>
-        props.disabled ? '3px solid transparent' : '3px solid #fff'};
-    }
+  &:hover {
+    border: ${(props) =>
+      props.disabled ? '3px solid transparent' : '3px solid #fff'};
   }
 `;
 
