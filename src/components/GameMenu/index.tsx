@@ -71,10 +71,8 @@ const GameMenu: React.FC<Props> = ({
         </>
       ) : (
         <>
-          <MenuButton onClick={() => newGame(10000)}>
-            Novice ($10000)
-          </MenuButton>
-          <MenuButton onClick={() => newGame(5000)}>Normal ($5000)</MenuButton>
+          <MenuButton onClick={() => newGame(10000)}>Novice ($4000)</MenuButton>
+          <MenuButton onClick={() => newGame(5000)}>Normal ($2000)</MenuButton>
           <MenuButton onClick={() => newGame(1000)}>Expert ($1000)</MenuButton>
         </>
       )}
