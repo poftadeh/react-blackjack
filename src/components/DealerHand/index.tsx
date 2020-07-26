@@ -32,7 +32,8 @@ const Dealer: React.FC<Props> = ({ dealer, players, gamePhase }) => {
             return <Card suit={suit} rank={rank} key={`${rank}${suit}`} />;
           })}
       </HandContainer>
-      {dealer.hand.length > 0 && (
+      {(gamePhase === GamePhase.DealerHand ||
+        gamePhase === GamePhase.Results) && (
         <HandScore value={dealer.handValue} length={dealer.hand.length} />
       )}
     </HandWrapper>
