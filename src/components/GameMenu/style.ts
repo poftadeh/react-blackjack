@@ -5,7 +5,7 @@ export const MenuWrapper = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding: 3rem;
   background-image: linear-gradient(
@@ -31,8 +31,7 @@ export const MenuButton = styled.button`
   font-size: 2.5rem;
   font-weight: 500;
   padding: 1.5rem;
-  margin-bottom: 8rem;
-  transition: all 1s;
+  transition: all 0.5s;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 
   @media (hover: hover) {

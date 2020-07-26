@@ -17,13 +17,7 @@ export const Title = styled.h1`
   font-size: 1.5rem;
 `;
 
-interface MenuButtonProps {
-  hide: boolean;
-}
-
 export const MenuButton = styled.div`
-  visibility: ${(props: MenuButtonProps) =>
-    props.hide ? 'hidden' : 'visible'};
   width: 3rem;
   height: 100%;
   cursor: pointer;

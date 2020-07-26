@@ -39,6 +39,14 @@ const GameMenu: React.FC<Props> = ({
     <MenuWrapper>
       {!isNewGameSelected ? (
         <>
+          <MenuButton
+            hidden={!activePlayer}
+            onClick={() => {
+              setGameMenuVisibility(false);
+            }}
+          >
+            Resume
+          </MenuButton>
           <MenuButton onClick={() => setIsNewGameSelected(true)}>
             New Game
           </MenuButton>

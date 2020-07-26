@@ -12,18 +12,11 @@ interface Props {
   activePlayer: SerializedPlayer | null;
 }
 
-const Header: React.FC<Props> = ({
-  setGameMenuVisibility,
-  isMenuVisible,
-  activePlayer,
-}) => {
+const Header: React.FC<Props> = ({ setGameMenuVisibility }) => {
   return (
     <StyledHeader>
       <Title>React Blackjack</Title>
-      <MenuButton
-        hide={!activePlayer}
-        onClick={() => setGameMenuVisibility(!isMenuVisible)}
-      />
+      <MenuButton onClick={() => setGameMenuVisibility(true)} />
     </StyledHeader>
   );
 };
