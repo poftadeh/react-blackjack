@@ -37,56 +37,6 @@ describe('Game', () => {
       .forEach((player) => expect(player.getHand().getCards().length).toBe(2));
   });
 
-  it('dealer stands on 17', () => {
-    const game = new Game([{ name: 'foo', startingChips: 2000 }]);
-
-    const testCards = [
-      new Card('2', 'Spades'),
-      new Card('10', 'Hearts'),
-      new Card('King', 'Hearts'),
-      new Card('2', 'Clubs'),
-      new Card('5', 'Diamonds'),
-    ];
-
-    jest
-      .spyOn(Deck.prototype, 'drawCard')
-      .mockImplementation(() => testCards.shift() as Card);
-
-    game.bet(200);
-    game.stand();
-
-    const dealer = game.getDealer();
-
-    expect(dealer.getHandValue()).toBe(17);
-    expect(dealer.getStatus()).toBe(PlayerStatus.Stand);
-    expect(dealer.isBust()).toBe(false);
-  });
-
-  it('handles busted dealer hands properly', () => {
-    const game = new Game([{ name: 'foo', startingChips: 2000 }]);
-
-    const testCards = [
-      new Card('2', 'Spades'),
-      new Card('10', 'Hearts'),
-      new Card('King', 'Hearts'),
-      new Card('2', 'Clubs'),
-      new Card('Queen', 'Diamonds'),
-    ];
-
-    jest
-      .spyOn(Deck.prototype, 'drawCard')
-      .mockImplementation(() => testCards.shift() as Card);
-
-    game.bet(1);
-    game.stand();
-
-    const dealer = game.getDealer();
-
-    expect(dealer.getHandValue()).toBe(22);
-    expect(dealer.getStatus()).toBe(PlayerStatus.Bust);
-    expect(dealer.isBust()).toBe(true);
-  });
-
   it('handles player hit', () => {
     const game = new Game([{ name: 'foo', startingChips: 2000 }]);
 
