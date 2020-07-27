@@ -95,6 +95,7 @@ export const ControlButton = styled.button`
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   font-size: 1.2rem;
   margin: 0 1.5rem;
+  user-select: none;
 `;
 
 export const ControlPanel = styled.div`
